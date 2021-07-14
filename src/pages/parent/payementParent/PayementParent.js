@@ -29,8 +29,8 @@ export default function Payement() {
   useEffect(function () {
     const d= sessionStorage.getItem('user_id')
     axios
-      // .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Note/${d}`)
-      .get(``)
+       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Paiment/1`)
+     
       .then(res => {
         seCoursM(res.data )
        console.log(res.data )
@@ -49,7 +49,7 @@ export default function Payement() {
            
             // data={ CoursM.map((m)=>( m.matiere))}
             data={ CoursM }
-            columns={[ "Id", " Type", "Montant","Date","Etat"]}
+            columns={[ "ID", "Type", "Montant","date","Etat"]}
             options={{
               filterType: "checkbox"
             }}

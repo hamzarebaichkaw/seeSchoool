@@ -241,12 +241,34 @@ const actions = {
     // }
   },
 
+
+//Create User
+
   doCreate: (values, history) => async (dispatch) => {
+     
     try {
       dispatch({
         type: 'USERS_FORM_CREATE_STARTED',
       });
-      axios.post('/users', { data: values }).then(res => {
+      axios.post('/api/users', {
+        
+        "username": "admin",
+        "email": "admin",
+        "password": "password",
+        
+      },
+      
+   {
+
+"headers" :{ 
+
+  "Content-Type":"application/json"
+
+}
+
+   }   
+      
+      ).then(res => {
         dispatch({
           type: 'USERS_FORM_CREATE_SUCCESS',
         });

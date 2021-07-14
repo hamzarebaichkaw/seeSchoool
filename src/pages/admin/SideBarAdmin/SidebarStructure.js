@@ -43,7 +43,7 @@ const structure = [
     { id: 54, label: 'Gestion des cycles', link: '/admin/cycles', icon: <ForumIcon /> },
     { id: 55, label: 'Gestion des classes', link: '/admin/classes', icon: <ForumIcon /> },
     { id: 56, label: 'Gestion des matiéres', link: '/admin/matiéres', icon: <ForumIcon /> },
-
+    { id: 57, label: 'Gestion des Conge', link: '/admin/conges', icon: <ForumIcon /> },
     
 ]
 

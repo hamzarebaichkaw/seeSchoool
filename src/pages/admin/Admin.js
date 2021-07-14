@@ -42,6 +42,9 @@ import { Link } from '../../components/Wrappers'
 import { useLayoutState } from '../../context/LayoutContext'
 import { ProductsProvider } from '../../context/ProductContext'
 import registerAdmin from './InscriptionAdmin/registerAdmin'
+import Emploie from './emploiesAdmin/EmploieAdmin'
+import CongesAdmin from './CongeAdmin/CongeAdmin'
+import MatiereAdmin from './matieresAdmin/MatiereAdmin'
 
  
 
@@ -88,12 +91,13 @@ function Layout(props) {
                   <Route path="/admin/Dashboard" component={Inscription} />
                     <Route path="/admin/Inscription" component={Inscription} />
                     <Route path="/admin/paiement" component={PaimentAdmin} />
-                    <Route path="/admin/emploies" component={Inscription} />
+                    <Route path="/admin/emploies" component={Emploie} />
                     <Route path="/admin/branches" component={Inscription} />
                     <Route path="/admin/cycles" component={Inscription} />
                     <Route path="/admin/classes" component={Inscription} />
-                    <Route path="/admin/matiéres" component={Inscription} />
+                    <Route path="/admin/matiéres" component={MatiereAdmin} />
                     <Route path="/admin/Register" component={registerAdmin} />
+                    <Route path="/admin/conges" component={CongesAdmin} />
                 </Switch>
              
                 {/* <Footer>
