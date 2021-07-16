@@ -76,7 +76,7 @@ export default function Inscription() {
     <div>
 <div style={{display:'flex', justifyContent:'space-between'}}>
    <h1>Gestion d'inscription </h1>
-   <Button variant="contained" color="primary" href="http://localhost:3000/#/admin/Register" style={{borderRadius:50, letterSpacing:4}}>
+   <Button  variant="contained" color="primary" href="http://localhost:3000/#/admin/Register" style={{backgroundColor: "#0E0D47", borderRadius:50 , letterSpacing:4}}>
       Creation d'un compte  <AddCircleIcon />
       </Button>
       </div>
@@ -91,6 +91,7 @@ CoursM.map(
 
       
   <Button
+  style={{backgroundColor: "#0E0D47",}}
   color="primary"
   variant="contained"
   className={classes.button}

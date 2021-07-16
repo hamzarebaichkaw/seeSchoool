@@ -15,9 +15,9 @@ import Widget from "../../../components/Widget/Widget";
 import mock from "../../dashboard/mock";
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import axios from "axios";
-import * as moment from 'moment'
+ 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { CircularProgress } from "../../../components/Wrappers/Wrappers";
+ 
 // const [mat, setmat] =  
 export default function MatiereAdmin() {
   const classes = useStyles();
@@ -57,7 +57,7 @@ export default function MatiereAdmin() {
            {
 CoursM.map(
   (m)=>( 
-  <Button
+  <Button style={{backgroundColor: "#0E0D47",}}
   color="primary"
   variant="contained"
   className={classes.button}
@@ -71,7 +71,7 @@ CoursM.map(
          <br />
          <br />
          <div style={{ display:'flex', justifyContent:'center'}}>
-         <Button variant="contained" color="secondary" href=" " style={{borderRadius:50, letterSpacing:4,}}>
+         <Button variant="contained" color="secondary" href="http://localhost:3000/#/admin/Addmatiere" style={{backgroundColor:'#9D0208',borderRadius:50, letterSpacing:4,}}>
     Ajouter une matiére  <AddCircleIcon />
       </Button>
          </div>

@@ -23,19 +23,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 // const [mat, setmat] =  
 export default function Emploie() {
   const classes = useStyles();
-  const [CoursM, seCoursM] = useState([]);
-  useEffect(function () {
-    const d= sessionStorage.getItem('user_id')
-    axios
-      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ClassesAdmin`)
-      .then(res => {
-        seCoursM(res.data.result)
-        // console.log(res.data.result)
-      }, 2000)
-      .catch(() => {
-        console.log("ERROR")
-      });
-  }, []);
+ 
   const [mat, setmat] =useState([]);
   function  reg  ( id ) {
    
@@ -54,22 +42,20 @@ export default function Emploie() {
  <div style={{backgroundColor:'',}}>
          <br />
          <div style={{display:'flex', justifyContent:'space-evenly', }}>
-           {
-CoursM.map(
-  (m)=>( 
-  <Button
+     
+ 
+  <Button  style={{backgroundColor: "#0E0D47",}}
   color="primary"
   variant="contained"
   className={classes.button}
-  // onClick={reg(2)} 
+  //  onClick={reg(2)} 
 >
 Classe
 </Button>
-       )
-       ) }
+   
        <br />
        <br />
-        <Button
+        <Button  style={{backgroundColor: "#0E0D47",}}
   color="primary"
   variant="contained"
   className={classes.button}
@@ -99,64 +85,7 @@ mat.map(
   <button  style={{height:'500px', width:'1210px', textAlign:'center', backgroundImage:'url()'}}  >   <CloudUploadIcon  /> 
     <Form.File style={{}} id="exampleFormControlFile2" label=" "  />
    </button>
-         {/* <Widget
-            title="LESSONS"
-            noBodyPadding
-            bodyClass={classes.tableWrapper}
-          > */}
-{/* {
-mat.map((item) => (
- <div>   
-  <p>
-    {item.Matiere}
-  </p>
-   <p>
-   {item.Fichier}
-   </p>
-   </div>
-)) 
-} */}
-       {/* <Table className="mb-0">
-      <TableHead>
-        <TableRow>
-        <TableCell > Matiere</TableCell>
-        <TableCell > Type</TableCell>
-        <TableCell > Fichier</TableCell>
-        <TableCell > date</TableCell>
-        <TableCell >  </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {
-        // mat ? (
-        //   <TableRow  > <TableCell><CircularProgress /></TableCell> </TableRow>
-        //   ) : (
-        mat.map(
-            ({ Matiere, type, TypeF, date_fin, Fichier  }) => (
-              <TableRow  >
-                <TableCell>{Matiere}</TableCell>
-                <TableCell>{type}</TableCell>
-                <TableCell>{TypeF}</TableCell>
-               <TableCell>
-        {date_fin}  </TableCell> 
-                <TableCell>
-                <Button
-                    size="small"
-                    className="px-2"
-                    variant="contained"
-                    onClick={()=> window.open(Fichier, "_blank")}
-                  >
-                  Télecharger 
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )
-        )
-          // )
-        } 
-      </TableBody>
-    </Table>
-          </Widget> */}
+     
           </div>
           </div>
   );

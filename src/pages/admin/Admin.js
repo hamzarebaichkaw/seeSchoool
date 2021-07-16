@@ -45,6 +45,10 @@ import registerAdmin from './InscriptionAdmin/registerAdmin'
 import Emploie from './emploiesAdmin/EmploieAdmin'
 import CongesAdmin from './CongeAdmin/CongeAdmin'
 import MatiereAdmin from './matieresAdmin/MatiereAdmin'
+import AddMatiere from './matieresAdmin/AddMatiere'
+import DashboardAdmin from './DashboardAdmin/DashboardAdmin'
+import ClassesAdmin from './classesAdmin/CalsssesAdmin'
+import ProfAdmin from './ProfAdmin/ProfAdmin'
 
  
 
@@ -88,14 +92,15 @@ function Layout(props) {
                 <div className={classes.fakeToolbar} />
             
                 <Switch>
-                  <Route path="/admin/Dashboard" component={Inscription} />
+                  <Route path="/admin/Dashboard" component={DashboardAdmin} />
                     <Route path="/admin/Inscription" component={Inscription} />
                     <Route path="/admin/paiement" component={PaimentAdmin} />
                     <Route path="/admin/emploies" component={Emploie} />
-                    <Route path="/admin/branches" component={Inscription} />
+                    <Route path="/admin/Prof" component={ProfAdmin} />
                     <Route path="/admin/cycles" component={Inscription} />
-                    <Route path="/admin/classes" component={Inscription} />
+                    <Route path="/admin/classes" component={ClassesAdmin} />
                     <Route path="/admin/matiéres" component={MatiereAdmin} />
+                    <Route path="/admin/Addmatiere" component={AddMatiere} />
                     <Route path="/admin/Register" component={registerAdmin} />
                     <Route path="/admin/conges" component={CongesAdmin} />
                 </Switch>
