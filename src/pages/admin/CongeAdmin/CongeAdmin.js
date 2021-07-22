@@ -74,7 +74,9 @@ CoursM.map(
           <MUIDataTable
             title="Gestion des Congés"
             data={ CoursM }
-            columns={[    "Monsieur/Madame","maladie","Début","Fin","Status"]}
+            columns={[    "Monsieur/Madame",
+            "maladie","Début","Fin","Status" 
+          ]}
             options={{
               filterType: "checkbox"
             }}

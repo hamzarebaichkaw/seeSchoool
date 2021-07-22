@@ -24,6 +24,7 @@ import Reset from "../pages/reset/Reset";
 // context
 import { useUserState } from "../context/UserContext";
 import parent from "../pages/parent/Parent";
+import DashboardAdmin from "../pages/admin/DashboardAdmin/DashboardAdmin";
 
 export default function App() {
   // global
@@ -61,6 +62,7 @@ export default function App() {
           <PrivateRoute path="/app" component={Layout} />
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/admin" component={ProfileAdmin} />
+          <PrivateRoute path="/admin/Dashboard" component={DashboardAdmin} />
           <PrivateRoute path="/parent" component={parent} />
           <MainRoute path="/home" component={LandingPage} />
           <PublicRoute path="/verify-email" exact component={Verify} />

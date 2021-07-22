@@ -40,7 +40,7 @@ const structure = [
     { id: 51, label: 'Gestion de paiement', link: '/admin/paiement', icon: <BorderAllIcon /> },
     { id: 52, label: 'Gestion des emploies ', link: '/admin/emploies', icon: <NotificationsNoneIcon /> },
     { id: 53, label: 'Gestion des professeurs', link: '/admin/Prof', icon: <ForumIcon /> },
-    { id: 54, label: 'Gestion des assuidités', link: '/admin/assuidite', icon: <ForumIcon /> },
+    { id: 54, label: 'Gestion des assuidités', link: '/admin/Assiduite', icon: <ForumIcon /> },
     { id: 55, label: 'Gestion des classes', link: '/admin/classes', icon: <ForumIcon /> },
     { id: 56, label: 'Gestion des matiéres', link: '/admin/matiéres', icon: <ForumIcon /> },
     { id: 57, label: 'Gestion des Conge', link: '/admin/conges', icon: <ForumIcon /> },

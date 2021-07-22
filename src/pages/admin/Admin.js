@@ -49,6 +49,7 @@ import AddMatiere from './matieresAdmin/AddMatiere'
 import DashboardAdmin from './DashboardAdmin/DashboardAdmin'
 import ClassesAdmin from './classesAdmin/CalsssesAdmin'
 import ProfAdmin from './ProfAdmin/ProfAdmin'
+import Assuidite from './AssiduiteAdmin/AssiduiteAdmin'
 
  
 
@@ -97,7 +98,7 @@ function Layout(props) {
                     <Route path="/admin/paiement" component={PaimentAdmin} />
                     <Route path="/admin/emploies" component={Emploie} />
                     <Route path="/admin/Prof" component={ProfAdmin} />
-                    <Route path="/admin/cycles" component={Inscription} />
+                    <Route path="/admin/Assiduite" component={Assuidite} />
                     <Route path="/admin/classes" component={ClassesAdmin} />
                     <Route path="/admin/matiéres" component={MatiereAdmin} />
                     <Route path="/admin/Addmatiere" component={AddMatiere} />

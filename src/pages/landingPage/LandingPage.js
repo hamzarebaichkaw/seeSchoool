@@ -38,7 +38,7 @@ function LandingPage() {
       </div>
       <div class='sk-asset sk-Sign-In-Button-BAC48CF5-67C6-4F28-B5B4-3940E47F2D0A'>
         <div class='sk-asset sk-Rectangle-2-06420F4A-E636-4F4A-BFAE-A9629E113531'></div>
-        <div class='sk-asset sk-Try-it-C9AB3DC9-5063-4918-90B2-60A5F5194A8C'><span class="span1"><a href="http://localhost:3000/#/admin" target="_blank" style={{ textDecoration: 'none', color: 'black' }}>Espace Admin</a></span></div>
+        <div class='sk-asset sk-Try-it-C9AB3DC9-5063-4918-90B2-60A5F5194A8C'><span class="span1"><a href=" http://localhost:3000/#/Admin/Dashboard" target="_blank" style={{ textDecoration: 'none', color: 'black' }}>Espace Admin</a></span></div>
       </div>
       <div class='sk-asset sk-Search-Button-E9FF149B-68D8-4115-A19F-F7137F1C9969'></div>
       <div class='sk-asset sk-Plans-5966EE1E-3E43-47DB-BE2D-F1D8A4FC6783'><span class="span1">Plans</span></div>

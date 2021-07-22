@@ -356,7 +356,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
                 className={classes.marginRight}
                 onClick={() => dispatch({ type: "OPEN_GRID" })}
               >
-                Grid
+                Gsss
               </Button>
               <Paper className={classes.paper}>
                   <Widget item xs zeroMinWidth>
