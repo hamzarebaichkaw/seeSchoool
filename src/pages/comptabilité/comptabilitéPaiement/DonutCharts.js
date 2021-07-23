@@ -1,116 +1,191 @@
-import React, { useState } from 'react';
-import { Button } from '../../../components/Wrappers';
-import { Grid, Typography } from "@material-ui/core";
-import Dot from '../../../components/Dot/Dot';
-import { withStyles } from '@material-ui/core/styles';
-import {
-    ResponsiveContainer,
-    PieChart,
-    Pie,
-    Cell,
-  } from "recharts";
-import chartsData from '../../profile/Components/mock';
+import React, { useState } from "react";
+import { Grid } from "@material-ui/core";
+import { useTheme } from "@material-ui/styles";
+import ReactApexChart from "react-apexcharts";
+import { Box } from "@material-ui/core";
 
-const PieChartData = [
-  { name: "New", value: 400 ,color: "#536DFE" },
-  { name: "En cours", value: 300 ,color: "#FFC35F" },
-  { name: "Livré", value: 300 ,color: "#3CD4A0" },
-  { name: "Annulé", value: 200 ,color: "#FF5C93" }
-];
+// components
+import Widget from "../../../components/Widget/Widget";
+import { Button } from "../../../components/Wrappers";
 
-const styles = (theme) => ({
-  legendItemContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 8,
-    paddingLeft: 10
-  },
-  detailsWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    paddingRight: 0,
-    paddingLeft: 0,
-    width: '100%',
-    bottom: 5,
-  },
-  legendItemsContainer: {
-    display: 'flex', 
-    alignItems: 'center', 
-    flexWrap: 'wrap'
-  }
-})
+const themeOptions = theme => {
+  return {
+    labels: ["Payer", "Non Payer",],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ],
+    colors: [
+      theme.palette.primary.main,
+      theme.palette.secondary.main,
+      theme.palette.warning.main,
+      theme.palette.success.light,
+      theme.palette.info.main
+    ],
+    options: {
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ],
+      colors: [
+        theme.palette.primary.main,
+        theme.palette.secondary.main,
+        theme.palette.warning.main,
+        theme.palette.success.light,
+        theme.palette.info.main
+      ]
+    },
+    options2: {
+      dataLabels: {
+        enabled: false
+      },
 
-const DonutChart = ({ classes }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [donutData, setDonutData] = useState(chartsData);
-  // eslint-disable-next-line no-unused-vars
-  const [age, setAge] = React.useState('');
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              show: false
+            }
+          }
+        }
+      ],
+      legend: {
+        position: "right",
+        offsetY: 0,
+        height: 230
+      },
+      colors: [
+        theme.palette.primary.main,
+        theme.palette.secondary.main,
+        theme.palette.warning.main,
+        theme.palette.success.light,
+        theme.palette.info.main
+      ]
+    },
+    options3: {
+      labels: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      theme: {
+        monochrome: {
+          enabled: true
+        }
+      },
+      colors: [
+        theme.palette.primary.main,
+        theme.palette.secondary.main,
+        theme.palette.warning.main,
+        theme.palette.success.light,
+        theme.palette.info.main
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    }
+  };
+};
+
+const values = {
+  series: [70,30],
+ 
+};
+
+export default function Charts(props) {
+  const theme = useTheme();
+  const [state, setState] = useState(values);
+  const appendData = () => {
+    var arr = state.series3.slice();
+    arr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1);
+
+    setState({
+      ...state,
+      series3: arr
+    });
+  };
+
+  const removeData = () => {
+    if (state.series3.length === 1) return;
+
+    var arr = state.series3.slice();
+    arr.pop();
+
+    setState({
+      ...state,
+      series3: arr
+    });
+  };
+
+  const randomize = () => {
+    setState({
+      ...state,
+      series3: state.series3.map(() => {
+        return Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+      })
+    });
+  };
+  console.log(themeOptions(theme))
+
+  const reset = () => {
+    setState({
+      ...state,
+      series3: [44, 55, 13, 33]
+    });
+  };
+
+  // local
 
   return (
-    <Grid container spacing={0}>
-      <Grid
-        item
-        lg={12}
-        md={12} xs={12}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: 'relative',
-          padding: 0,
-        }}
-      >
-        <Typography
-          variant={"caption"}
-          style={{ position: "absolute", top: 60, fontWeight: "bold", fontSize: 18 }}
-        >
-          121
-        </Typography>
-        <ResponsiveContainer width="100%" height={150}>
-          <PieChart>
-            <Pie
-              data={PieChartData}
-              innerRadius={33}
-              outerRadius={50}
-              dataKey="value"
-            >
-              {PieChartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.color}
-                  stroke={""}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+    <>
+      <Grid container spacing={4}>
+        <Grid item md={6} xs={12}>
+          <Widget title={"Gestion des paiements"} noBodyPadding>
+            <ReactApexChart
+              options={themeOptions(theme)}
+              series={state.series}
+              type="pie"
+              height="380"
+              stroke={""}
+            />
+          </Widget>
+        </Grid>
       </Grid>
-      <Grid item lg={12} md={12} xs={12} className={classes.legendItemsContainer}>
-          {PieChartData.map(({ name, value, color }, index) => (
-            <div key={color} className={classes.legendItemContainer}>
-              <Dot color={color} style={{ marginLeft: 5 }} />
-              <Typography
-                color="text"
-                colorBrightness={"hint"}
-                variant={"caption"}
-                style={{ fontSize: 14 }}
-                noWrap
-              >
-                &nbsp;{name}&nbsp;
-              </Typography>
-            </div>
-          ))}
-      </Grid>
-      <div className={classes.detailsWrapper} >
-        <Button 
-          variant="outlined" 
-          color="primary" 
-        >
-          DETAILS
-        </Button>
-      </div>
-    </Grid>
-  )
+    </>
+  );
 }
-
-export default withStyles(styles)(DonutChart)

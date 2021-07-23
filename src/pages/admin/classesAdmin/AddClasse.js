@@ -24,10 +24,11 @@ import { Button, Typography } from '../../../components/Wrappers/Wrappers'
 //   useManagementDispatch,
 // } from '../../../context/ManagementContext'
 export default function AddClasse(props){
-    var [NomValue, setNomValue] = useState("");
-    var [Descrption, setDescrption] = useState("");
-    var [coefficient, setcoefficient] = useState("");
-    var [clas, setclas] = useState("");
+    var [Section, setSection] = useState("");
+    var [Nom, setNom] = useState("");
+    var [Niveau, setNiveau] = useState("");
+    var [sous_niveau, setsous_niveau] = useState("");
+    var [Capcite, setCapcite] = useState("");
     const [CoursM, seCoursM] = useState([]);
     useEffect(function () {
       const d= sessionStorage.getItem('user_id')
@@ -41,26 +42,28 @@ export default function AddClasse(props){
           console.log("ERROR")
         });
     }, []);
-    function AddMat(NomValue,coefficient,Descrption,clas
+    function Addclass(Section,Nom,Niveau,sous_niveau,Capcite
        
        
       ){
 
-      
+     
       
   
         Axios
-            .post('http://www.pointofsaleseedigitalaency.xyz/public/api/matieres', {
-                "classe": "/public/api/classes/".clas,
+            .post('http://www.pointofsaleseedigitalaency.xyz/public/api/classes', 
+            
+            {
+                "Section": "Section",
       
-                "nom": NomValue,
-                "description": Descrption,
-                
-                "coefficient":coefficient
+                "Nom": Nom,
+                "Niveau": Niveau,              
+                "sous_niveau":sous_niveau,
+                "Capcite":Capcite
             })
             .then( 
 
-                console.log("yessssssssssssssssssss".clas)
+                console.log("yessssssssssssssssssss")
             )
              
        
@@ -91,39 +94,65 @@ export default function AddClasse(props){
         <>
         <TextField
             id="outlined-basic"
-            label="classe"
+            label="Section"
             // onChange={}
-            name="Nom"
-            value={NomValue}
-            onChange={e => setNomValue(e.target.value)}
+            name="Section"
+            value={Section}
+            onChange={e => setSection(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText="S'il vous ajouter votre classe"
+            helperText="S'il vous ajouter votre section"
         />
         <TextField
             id="outlined-basic"
-            label="Description"
+            label="Nom"
             // onChange={}
             // value={}
-            name="Description"
-            value={Descrption}
-            onChange={e => setDescrption(e.target.value)}
+            name="Nom"
+            value={Nom}
+            onChange={e => setNom(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer la Description "
+            helperText= "S'il vous plait entrer le nom "
             type={'textera'}
         />
          <TextField
             id="outlined-basic"
-            label="coefficient"
+            label="Niveau"
             // onChange={}
             // value={}
-            name="coefficient"
-            value={coefficient}
-            onChange={e => setcoefficient(e.target.value)}
+            name="Niveau"
+            value={Niveau}
+            onChange={e => setNiveau(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer la Description "
+            helperText= "S'il vous plait entrer le niveau "
+            type={'textera'}
+        />
+             <TextField
+            id="outlined-basic"
+            label="sous_niveau"
+            // onChange={}
+            // value={}
+            name="sous_niveau"
+            value={sous_niveau}
+            onChange={e => setsous_niveau(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer le sous_niveau "
+            type={'textera'}
+        />
+          <TextField
+            id="outlined-basic"
+            label="Capcite"
+            // onChange={}
+            // value={}
+            name="Capcite"
+            value={Capcite}
+            onChange={e => setCapcite(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer la Capcite "
             type={'textera'}
         />
         <FormControl
@@ -132,7 +161,7 @@ export default function AddClasse(props){
             style={{ marginBottom: 35 }}
         >
            
-            <Select
+            {/* <Select
               
                
                 name="Class"
@@ -150,13 +179,13 @@ key={m.id}
 >{m.matieress }</MenuItem>
        )
        )}
-            </Select>
+            </Select> */}
          
         </FormControl>
         <Button
                   color="primary"
                   variant="contained"
-                  onClick={()=>{AddMat(NomValue,coefficient,Descrption,clas)}} 
+                  onClick={()=>{Addclass(Section,Nom,Niveau,sous_niveau,Capcite)}} 
                 >
                   envoyer
                 </Button>

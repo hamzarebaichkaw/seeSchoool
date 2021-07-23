@@ -6,7 +6,8 @@ import { Grid, Table,
     TableBody,
     TableCell, } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
-
+import Donut from './DonutCharts';
+import ReactApexChart from './DonutCharts'
 
 export default function ComptaPaiement() {
 
@@ -62,9 +63,9 @@ export default function ComptaPaiement() {
    > Charte
    </Button> 
     </div>
-    
-    
-             <br />
+    {/* <Donut /> */}
+    <ReactApexChart />
+         <br />
          <br />
          <div>
          <Grid container spacing={4}>

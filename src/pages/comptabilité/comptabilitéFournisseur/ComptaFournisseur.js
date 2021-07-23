@@ -7,7 +7,7 @@ import { Grid, Table,
     TableCell, } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
 import Donut from './DonutCharts';
-
+import ReactApexChart from './DonutCharts'
 export default function ComptaFournisseur() {
 
 
@@ -68,7 +68,7 @@ export default function ComptaFournisseur() {
    </Button> 
     </div>
     {/* <Donut /> */}
-    
+    <ReactApexChart />
              <br />
          <br />
          <div>
