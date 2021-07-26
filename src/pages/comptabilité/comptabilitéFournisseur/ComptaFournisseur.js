@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import { Grid, Table,
     TableRow,
@@ -6,9 +6,20 @@ import { Grid, Table,
     TableBody,
     TableCell, } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
+    import axios from "axios";
 import Donut from './DonutCharts';
 import ReactApexChart from './DonutCharts'
 export default function ComptaFournisseur() {
+  const [mat, setmat] =useState([]);
+  function  reg  (  ) {
+   const d= sessionStorage.getItem('user_id')
+    axios
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/FornisseurAdmin`)
+      .then(res => {
+     setmat(res.data)
+      }, 2000)
+  } 
+
 
 
     return(
@@ -57,7 +68,7 @@ export default function ComptaFournisseur() {
     <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
-    //   onClick={()=>{reg("1")}} 
+     onClick={()=>{reg()}} 
    > Tableau
    </Button> 
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
@@ -76,8 +87,8 @@ export default function ComptaFournisseur() {
         <Grid item xs={12}>
           <MUIDataTable
             title="Gestion des fournisseurs"
-        //   data={  mat}
-            columns={[ "Order Id"," Fournisseur", "Produit","Quantité", "Prix", "Date d'achat", "Status", "Actions"]}
+        data={  mat}
+            columns={[ "id","Fornisseur", "produit","Quantite", "Prix", "date_Order", "Status", "Actions"]}
             options={{
               filterType: "checkbox"
             }}
