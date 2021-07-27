@@ -19,19 +19,30 @@ export default function ComptaFournisseur() {
      setmat(res.data)
       }, 2000)
   } 
-  const [CoursM, seCoursM] = useState([]);
-  useEffect(function () {
-    const d= sessionStorage.getItem('user_id')
-    axios
-      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
-      .then(res => {
-        seCoursM(res.data)
-          console.log(res.data)
-      }, 2000)
-      .catch(() => {
-        console.log("ERROR")
-      });
-  }, []);
+  const [showText, setShowText] = useState(false);
+  const [showTable, setShowTable] = useState(false);
+  const onClick = () => setShowText(true);
+  const onClicktable = () => setShowTable(true);
+
+  const Text = () =>
+  <div  >
+   <ReactApexChart />
+   </div>;
+const Table = () =>
+<div  >
+<Grid container spacing={4}>
+        <Grid item xs={12}>
+          <MUIDataTable
+            title="Gestion des fournisseurs"
+        data={  mat}
+            columns={[ "id","Fornisseur", "produit","Quantite", "Prix", "date_Order", "Status", "Actions"]}
+            options={{
+              filterType: "checkbox"
+            }}
+          />
+        </Grid>
+      </Grid>
+ </div>;
 
 
     return(
@@ -75,27 +86,31 @@ export default function ComptaFournisseur() {
     <br />
     <br />
     <div style={{display:'flex', justifyContent:'space-evenly'}}>
-
+  
 
     <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
-     onClick={()=>{reg()}} 
+     onClick={()=>{{reg()};
+            onClicktable() 
+    }} 
    > Tableau
    </Button> 
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
     // onClick={ }
+    onClick={onClick} 
    > Charte
    </Button> 
     </div>
     {/* <Donut /> */}
-    <ReactApexChart />
+    {showText ? <Text /> : null}
+    {showTable ? <Table /> : null}
              <br />
          <br />
          <div>
-         <Grid container spacing={4}>
+         {/* <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable
             title="Gestion des fournisseurs"
@@ -106,7 +121,7 @@ export default function ComptaFournisseur() {
             }}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
          </div>
 </div>
 

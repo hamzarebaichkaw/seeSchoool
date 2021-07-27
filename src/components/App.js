@@ -26,7 +26,7 @@ import { useUserState } from "../context/UserContext";
 import parent from "../pages/parent/Parent";
 import DashboardAdmin from "../pages/admin/DashboardAdmin/DashboardAdmin";
 import Comptabilité from "../pages/comptabilité/Comptabilité";
-
+import Professerus from "../pages/professeurs/Professerus";
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
@@ -63,6 +63,7 @@ export default function App() {
           <PrivateRoute path="/app" component={Layout} />
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/admin" component={ProfileAdmin} />
+          <PrivateRoute path="/Professeur" component={Professerus} />
           <PrivateRoute path="/admin/Dashboard" component={DashboardAdmin} />
           <PrivateRoute path="/comptabilite" component={Comptabilité} />
           <PrivateRoute path="/parent" component={parent} />

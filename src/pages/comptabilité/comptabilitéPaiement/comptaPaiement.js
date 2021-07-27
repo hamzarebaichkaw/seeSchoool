@@ -21,6 +21,31 @@ export default function ComptaPaiement() {
       }, 2000)
   } 
 
+
+  const [showText, setShowText] = useState(false);
+  const [showTable, setShowTable] = useState(false);
+  const onClick = () => setShowText(true);
+  const onClicktable = () => setShowTable(true);
+
+  const Text = () =>
+  <div  >
+   <ReactApexChart />
+   </div>;
+const Table = () =>
+<div  >
+<Grid container spacing={4}>
+        <Grid item xs={12}>
+          <MUIDataTable
+            title="Gestion de paiement"
+         data={  mat}
+            columns={[ "id","Montant", "date de paiment","Status" ]}
+            options={{
+              filterType: "checkbox"
+            }}
+          />
+        </Grid>
+      </Grid>
+ </div>;
     
     return(
     
@@ -62,22 +87,26 @@ export default function ComptaPaiement() {
     <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
-     onClick={()=>{reg()}} 
+     onClick={()=>{{reg()};
+            onClicktable() 
+    }} 
    > Tableau
    </Button> 
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
+     onClick={onClick} 
     //   onClick={()=>{reg("1")}} 
    > Charte
    </Button> 
     </div>
     {/* <Donut /> */}
-    <ReactApexChart />
+    {showText ? <Text /> : null}
+    {showTable ? <Table /> : null}
          <br />
          <br />
          <div>
-         <Grid container spacing={4}>
+         {/* <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable
             title="Gestion de paiement"
@@ -88,7 +117,7 @@ export default function ComptaPaiement() {
             }}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
          </div>
     </div>
      
