@@ -19,7 +19,19 @@ export default function ComptaFournisseur() {
      setmat(res.data)
       }, 2000)
   } 
-
+  const [CoursM, seCoursM] = useState([]);
+  useEffect(function () {
+    const d= sessionStorage.getItem('user_id')
+    axios
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
+      .then(res => {
+        seCoursM(res.data)
+          console.log(res.data)
+      }, 2000)
+      .catch(() => {
+        console.log("ERROR")
+      });
+  }, []);
 
 
     return(

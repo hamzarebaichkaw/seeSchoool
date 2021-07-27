@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import ReactApexChart from "react-apexcharts";
 import { Box } from "@material-ui/core";
-
+import axios from "axios";
 // components
 import Widget from "../../../components/Widget/Widget";
 import { Button } from "../../../components/Wrappers";
 
 const themeOptions = theme => {
+  
   return {
     labels: ["Annulé", "livré", "En cours", ],
     responsive: [
@@ -123,51 +124,44 @@ const themeOptions = theme => {
 };
 
 const values = {
-  series: [30, 35, 35, ],
+  series: [60,19.1,20.9 ],
 
 };
+// const [mat, setmat] =useState([]);
+// function  reg  (  ) {
+//  const d= sessionStorage.getItem('user_id')
+//   axios
+//     .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
+//     .then(res => {
+//    setmat(res.data)
+//     }, 2000)
+// } 
+// reg()
 
 export default function Charts(props) {
+  const [CoursM, seCoursM] = useState([]);
+  useEffect(function () {
+    const d= sessionStorage.getItem('user_id')
+    axios
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
+      .then(res => {
+        seCoursM(res.data)
+          console.log(res.data)
+      }, 2000)
+      .catch(() => {
+        console.log("ERROR")
+      });
+  }, []);
   const theme = useTheme();
+ const tt=CoursM
   const [state, setState] = useState(values);
-  const appendData = () => {
-    var arr = state.series3.slice();
-    arr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1);
+  console.log("val  :",values)
+  console.log("mat  :",CoursM)
+  
+ 
 
-    setState({
-      ...state,
-      series3: arr
-    });
-  };
-
-  const removeData = () => {
-    if (state.series3.length === 1) return;
-
-    var arr = state.series3.slice();
-    arr.pop();
-
-    setState({
-      ...state,
-      series3: arr
-    });
-  };
-
-  const randomize = () => {
-    setState({
-      ...state,
-      series3: state.series3.map(() => {
-        return Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-      })
-    });
-  };
-  console.log(themeOptions(theme))
-
-  const reset = () => {
-    setState({
-      ...state,
-      series3: [44, 55, 13, 33]
-    });
-  };
+   
+ 
 
   // local
 
