@@ -55,7 +55,7 @@ export default function ComptaCommande() {
   useEffect(function () {
     const d= sessionStorage.getItem('user_id')
     axios
-      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ClassesAdmin`)
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
       .then(res => {
         seCoursM(res.data.result)
         // console.log(res.data.result)
@@ -68,7 +68,7 @@ export default function ComptaCommande() {
   function  reg  ( id ) {
    const d= sessionStorage.getItem('user_id')
     axios
-      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/AssiduteAdmin/${id}`)
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
       .then(res => {
      setmat(res.data)
       }, 2000)
@@ -117,8 +117,9 @@ export default function ComptaCommande() {
         <Grid item xs={12}>
           <MUIDataTable
             title="Bon de commande 100 total"
-          data={  mat}
-            columns={[ "id", "Nom & Prenom", "nombre absence" , 
+          data={ mat}
+            columns={[ "REF", "Description", "Quantite" , "Total TTC"
+            , "date de paiement","Status",
             {
               name: "Actions",
               options: {

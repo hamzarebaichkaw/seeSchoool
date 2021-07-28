@@ -92,16 +92,21 @@ const Table = () =>
      color="primary"
      variant="contained"
      onClick={()=>{{reg()};
-            onClicktable() 
-    }} 
+             setShowTable(!showTable) 
+             setShowText(null)
+     }}
    > Tableau
    </Button> 
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
-    // onClick={ }
-    onClick={onClick} 
-   > Charte
+    
+     onClick={()=>{
+      setShowTable(null) 
+      setShowText(!showText)}
+    
+    }
+   > Chart
    </Button> 
     </div>
     {/* <Donut /> */}

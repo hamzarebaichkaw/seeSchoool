@@ -9,6 +9,7 @@ import classnames from 'classnames'
 import { useLayoutState } from '../../context/LayoutContext'
 
 import useStyles from './styles'
+import EventsProfs from './EventsProfs/eventsProfs';
 
 
 function Layout(props) {
@@ -60,7 +61,7 @@ return(
                     <Route path="/Professeur/cours" component={ProfsDashboard} />
                     <Route path="/Professeur/notifications" component={ProfsDashboard} />
                     <Route path="/Professeur/notes" component={ProfsDashboard} />
-                    <Route path="/Professeur/Events" component={ProfsDashboard} />
+                    <Route path="/Professeur/Events" component={EventsProfs} />
                     <Route path="/Professeur/assuidité" component={ProfsDashboard} />
                     <Route path="/Professeur/homework" component={ProfsDashboard} />
                     <Route path="/Professeur/support" component={ProfsDashboard} />

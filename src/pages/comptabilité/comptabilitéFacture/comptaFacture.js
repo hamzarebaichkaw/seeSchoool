@@ -59,15 +59,20 @@ const Table = () =>
              color="primary"
              variant="contained"
              onClick={()=>{{reg()};
-             onClicktable() 
-     }} 
+             setShowTable(!showTable) 
+             setShowText(null)
+     }}
            > tableau
            </Button> 
            <Button style={{backgroundColor: "grey",width:'150px'}}
              color="primary"
              variant="contained"
-            //   onClick={()=>{reg("1")}} 
-            onClick={onClick} 
+            
+            onClick={()=>{
+              setShowTable(null) 
+              setShowText(!showText)}
+            
+            }
            > chart
            </Button> 
         
@@ -78,23 +83,11 @@ const Table = () =>
          
             {showText ? <Text /> : null}
     {showTable ? <Table /> : null}
-            {/* <Donut /> */}
-            {/* <ReactApexChart /> */}
+          
                      <br />
                  <br />
                  <div>
-                 {/* <Grid container spacing={4}>
-                <Grid item xs={12}>
-                  <MUIDataTable
-                    title="Gestion des Factures"
-               data={  mat}
-                    columns={[ "Order ID","Fornisseur", "Total TTC","Quantite",  "date de paiement", "Status", "Actions"]}
-                    options={{
-                      filterType: "checkbox"
-                    }}
-                  />
-                </Grid>
-              </Grid> */}
+               
                  </div>
         </div>
         
