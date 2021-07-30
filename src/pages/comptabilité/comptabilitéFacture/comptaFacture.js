@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
-import { Grid, Table,
-    TableRow,
-    TableHead,
-    TableBody,
-    TableCell, } from "@material-ui/core";
+import { Grid, Box  } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
     import axios from "axios";
-import Donut from './DonutCharts';
+ 
+import { CircularProgress } from "../../../components/Wrappers"
 import ReactApexChart from './DonutCharts'
 
 export default function ComptaFacture() {
   const [mat, setmat] =useState([]);
-  function  reg  (  ) {
+  const [isLoading, setIsLoading] = useState(true);
+  async  function  reg  (  ) {
    const d= sessionStorage.getItem('user_id')
-    axios
+   setIsLoading(true)
+   await    axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/FactureCompt`)
       .then(res => {
      setmat(res.data)
       }, 2000)
+      setIsLoading(false)
   } 
 
 
@@ -38,10 +38,17 @@ const Table = () =>
                 <Grid item xs={12}>
                   <MUIDataTable
                     title="Gestion des Factures"
-               data={  mat}
+               data={mat}
                     columns={[ "Order ID","Fornisseur", "Total TTC","Quantite",  "date de paiement", "Status", "Actions"]}
                     options={{
-                      filterType: "checkbox"
+                      filterType: "checkbox",
+                      textLabels: {
+                        body: {
+                            noMatch:  isLoading ?
+                            <CircularProgress />:
+                                'Sorry, there is no matching data to display',
+                        },
+                    },
                     }}
                   />
                 </Grid>

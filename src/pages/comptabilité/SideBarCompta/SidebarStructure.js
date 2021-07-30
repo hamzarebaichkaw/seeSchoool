@@ -39,10 +39,10 @@ const structure = [
     { id: 50, label: 'Gestion des fournisseurs  ', link: '/comptabilite/fournisseur', icon: <AssignmentIcon /> },
     { id: 51, label: 'Gestion de paiement', link: '/comptabilite/paiement', icon: <BorderAllIcon /> },
     { id: 52, label: 'Gestion des factures ', link: '/comptabilite/factures', icon: <ForumIcon /> },
-    { id: 53, label: 'Gestion des professeurs', link: '/comptabilite/Prof', icon: <ForumIcon /> },
-    { id: 54, label: 'telechargement exel', link: '/comptabilite/exel', icon: <ForumIcon /> },
+ 
+   
     { id: 55, label: 'Bon de Commande', link: '/comptabilite/commande', icon: <ForumIcon /> },
-    { id: 56, label: 'Historique', link: '/comptabilite/historique', icon: <ForumIcon /> },
+ 
 
     
 ]

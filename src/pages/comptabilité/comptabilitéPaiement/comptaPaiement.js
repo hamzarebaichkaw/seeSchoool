@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
-import { Grid, Table,
-    TableRow,
-    TableHead,
-    TableBody,
-    TableCell, } from "@material-ui/core";
+import {  Button  } from "../../../components/Wrappers/Wrappers";
+import { Grid,  } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
     import axios from "axios";
-import Donut from './DonutCharts';
+    import { CircularProgress } from "../../../components/Wrappers"
+ 
 import ReactApexChart from './DonutCharts'
 
 export default function ComptaPaiement() {
+  const [isLoading, setIsLoading] = useState(true);
   const [mat, setmat] =useState([]);
-  function  reg  (  ) {
+  async function  reg  (  ) {
    const d= sessionStorage.getItem('user_id')
-    axios
+   setIsLoading(true)
+   await axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/PaimentCompt`)
       .then(res => {
      setmat(res.data)
       }, 2000)
+      setIsLoading(false)
   } 
 
 
@@ -40,7 +40,14 @@ const Table = () =>
          data={  mat}
             columns={[ "id","Montant", "date de paiment","Status" ]}
             options={{
-              filterType: "checkbox"
+              filterType: "checkbox",
+              textLabels: {
+                body: {
+                    noMatch:  isLoading ?
+                    <CircularProgress />:
+                        'Sorry, there is no matching data to display',
+                },
+            },
             }}
           />
         </Grid>

@@ -10,6 +10,13 @@ import { useLayoutState } from '../../context/LayoutContext'
 
 import useStyles from './styles'
 import EventsProfs from './EventsProfs/eventsProfs';
+import EmploieProf from './emlpoieProfs/EmploieProf';
+import NotesProfs from './notesProfs/NotesProfs';
+import AssuiditeProf from './assuiditéProf/AssuiditeProf';
+import NotificationsProfs from './NotificationProfs/NotificationProfs';
+import HomeworksProfs from './HomeworkProfs/HomeworkProfs';
+import CoursProfs from './CoursProfs/CoursProfs';
+import SupportProfs from './supportProf/SupportProfs';
 
 
 function Layout(props) {
@@ -54,17 +61,16 @@ return(
             >
                 <div className={classes.fakeToolbar} />
             
-                <Switch>
-               
+                <Switch>              
                     <Route path="/Professeur/dashboard" component={ProfsDashboard} />
-                    <Route path="/Professeur/emploi" component={ProfsDashboard} />
-                    <Route path="/Professeur/cours" component={ProfsDashboard} />
-                    <Route path="/Professeur/notifications" component={ProfsDashboard} />
-                    <Route path="/Professeur/notes" component={ProfsDashboard} />
+                    <Route path="/Professeur/emploi" component={EmploieProf} />
+                    <Route path="/Professeur/cours" component={CoursProfs} />
+                    <Route path="/Professeur/notifications" component={NotificationsProfs} />
+                    <Route path="/Professeur/notes" component={NotesProfs} />
                     <Route path="/Professeur/Events" component={EventsProfs} />
-                    <Route path="/Professeur/assuidité" component={ProfsDashboard} />
-                    <Route path="/Professeur/homework" component={ProfsDashboard} />
-                    <Route path="/Professeur/support" component={ProfsDashboard} />
+                    <Route path="/Professeur/assuidité" component={AssuiditeProf} />
+                    <Route path="/Professeur/homework" component={HomeworksProfs} />
+                    <Route path="/Professeur/support" component={SupportProfs} />
                 </Switch>
              
                 {/* <Footer>

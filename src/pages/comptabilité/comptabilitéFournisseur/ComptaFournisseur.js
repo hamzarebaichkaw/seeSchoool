@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
-import { Grid, Table,
-    TableRow,
-    TableHead,
-    TableBody,
-    TableCell, } from "@material-ui/core";
+import {  Button } from "../../../components/Wrappers/Wrappers";
+import { Grid,  Box } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
     import axios from "axios";
-import Donut from './DonutCharts';
+    import { CircularProgress } from "../../../components/Wrappers"
+ 
 import ReactApexChart from './DonutCharts'
 export default function ComptaFournisseur() {
   const [mat, setmat] =useState([]);
-  function  reg  (  ) {
+  const [isLoading, setIsLoading] = useState(true);
+  async function  reg  (  ) {
    const d= sessionStorage.getItem('user_id')
-    axios
+   setIsLoading(true)
+   await  axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/FornisseurAdmin`)
       .then(res => {
      setmat(res.data)
       }, 2000)
+      setIsLoading(false)
   } 
+  
   const [showText, setShowText] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const onClick = () => setShowText(true);
@@ -28,19 +29,34 @@ export default function ComptaFournisseur() {
   <div  >
    <ReactApexChart />
    </div>;
+
+
 const Table = () =>
 <div  >
 <Grid container spacing={4}>
+ 
+
         <Grid item xs={12}>
+     
           <MUIDataTable
             title="Gestion des fournisseurs"
         data={  mat}
             columns={[ "id","Fornisseur", "produit","Quantite", "Prix", "date_Order", "Status", "Actions"]}
             options={{
-              filterType: "checkbox"
+              filterType: "checkbox",
+              textLabels: {
+                body: {
+                    noMatch:  isLoading ?
+                    <CircularProgress />:
+                        'Sorry, there is no matching data to display',
+                },
+            },
             }}
+            
           />
+
         </Grid>
+       
       </Grid>
  </div>;
 
@@ -115,18 +131,7 @@ const Table = () =>
              <br />
          <br />
          <div>
-         {/* <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <MUIDataTable
-            title="Gestion des fournisseurs"
-        data={  mat}
-            columns={[ "id","Fornisseur", "produit","Quantite", "Prix", "date_Order", "Status", "Actions"]}
-            options={{
-              filterType: "checkbox"
-            }}
-          />
-        </Grid>
-      </Grid> */}
+   
          </div>
 </div>
 

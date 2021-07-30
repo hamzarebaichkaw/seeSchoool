@@ -7,33 +7,16 @@ import axios from "axios";
 // components
 import Widget from "../../../components/Widget/Widget";
 import { Button } from "../../../components/Wrappers";
+import { CircularProgress } from "../../../components/Wrappers"
+
  
 
-// const [mat, setmat] =useState([]);
-// function  reg  (  ) {
-//  const d= sessionStorage.getItem('user_id')
-//   axios
-//     .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
-//     .then(res => {
-//    setmat(res.data)
-//     }, 2000)
-// } 
-// reg()
-
 export default function Charts(props) {
-  const [CoursM, seCoursM] = useState([]);
-          useEffect(function () {
-            const d= sessionStorage.getItem('user_id')
-            axios
-              .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFactureAdmin`)
-              .then(res => {
-                seCoursM(res.data)
-                
-              }, 2000)
-              .catch(() => {
-                console.log("ERROR")
-              });
-          }, []);
+
+
+
+  
+ 
 
 
 
@@ -152,47 +135,64 @@ export default function Charts(props) {
     };
   };
   
-  const values = {
-    series: [70,30],
-  
-  };
+ 
   
       const theme = useTheme();
-  
-      const [state, setState] = useState(values);
+      useEffect(function () {
+        getStats()
+      }, []);
+    
+      const [state, setState] = useState(null);
+      const [isLoading, setIsLoading] = useState(true);
+    
+    
       const reset = () => {
-        setState({
-          ...state,
-          series: CoursM.series
-        });
+        getStats()
+      };
+    
+      const getStats = async () => {
+        const d = sessionStorage.getItem('user_id')
+        setIsLoading(true)
+        await axios
+          .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFactureAdmin`)
+          .then(res => {
+            setState(res.data);
+          }, 2000)
+          .catch((e) => {
+            console.error(e)
+          });
+          setIsLoading(false)
       };
  
    
  
 
-  // local
+ 
 
   return (
     
     <>
       <Grid container spacing={4}>
         <Grid item md={10} xs={12}>
-          <Widget title={"Gestion des fournisseurs"} noBodyPadding>
-            <ReactApexChart
-              options={themeOptions(theme)}
-              series={state.series}
-              type="donut"
-              height="380"
-              stroke={""}
-            />
+          <Widget title={"Gestion des Facture"} noBodyPadding>
+          {
+              isLoading ?
+                <Box my={3} display="flex" flexWrap="wrap" justifyContent="center">
+                  <Box mt={1} mr={2}>
+                    <CircularProgress />
+                  </Box>
+                </Box>
+                :
+                <ReactApexChart
+                  options={themeOptions(theme)}
+                  series={state.series}
+                  type="pie"
+                  height="380"
+                  stroke={""}
+                />
+            }
           </Widget>
-          <Button
-                  variant="contained"
-                  onClick={() => reset()}
-                  color="success"
-                >
-                  reset
-                </Button>
+       
         </Grid>
  
       </Grid>

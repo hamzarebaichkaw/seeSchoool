@@ -3,19 +3,15 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import useStyles from "./styles";
 import { withStyles, useTheme } from '@material-ui/core/styles';
-import FolderIcon from '@material-ui/icons/Folder';
+ 
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-// components
-import Popup from 'reactjs-popup';
-import Widget from "../../../components/Widget/Widget";
-// import Table from "../../dashboard/components/Table/Table";
-// data
-import mock from "../../dashboard/mock";
+ 
+ 
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import axios from "axios";
-import * as moment from 'moment'
+ 
 import { CircularProgress } from "../../../components/Wrappers/Wrappers";
-// const [mat, setmat] =  
+ 
 import {
   Grid,
   Box,
@@ -24,8 +20,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
-  Paper
+  
 } from "@material-ui/core";
 const reducer = (state, action) => {
   switch (action.type) {
@@ -50,38 +45,49 @@ export default function ComptaCommande() {
     toggleLarge: false,
     toggleInputModal: false
   });
+  const [isLoading, setIsLoading] = useState(true);
   const classes = useStyles();
   const [CoursM, seCoursM] = useState([]);
   useEffect(function () {
+    getStats()
+  }, [])
+  const getStats = async () => {
     const d= sessionStorage.getItem('user_id')
-    axios
+    setIsLoading(true)
+    await axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
       .then(res => {
         seCoursM(res.data.result)
-        // console.log(res.data.result)
+       
       }, 2000)
+    
       .catch(() => {
         console.log("ERROR")
       });
-  }, []);
+      setIsLoading(false)
+  } ;
   const [mat, setmat] =useState([]);
-  function  reg  ( id ) {
+  async function  reg  ( id ) {
    const d= sessionStorage.getItem('user_id')
-    axios
+   setIsLoading(true)
+   await axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
       .then(res => {
      setmat(res.data)
       }, 2000)
+      setIsLoading(false)
   } 
   const [mats, setmats] =useState([]);
-  function  regs  ( id ) {
+  async function  regs  ( id ) {
    const d= sessionStorage.getItem('user_id')
    dispatch({ type: "OPEN_GRID" })
-    axios
+   setIsLoading(true)
+   await axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/NbrAbsence/${id}`)
       .then(res => {
      setmats(res.data)
       }, 2000)
+      setIsLoading(false)
   } 
   return (
 <div>
@@ -89,19 +95,7 @@ export default function ComptaCommande() {
  <div style={{backgroundColor:'',}}>
          <br />
          <div >
-         {/* <Button style={{backgroundColor: "#0E0D47",width:'150px'}}
-     color="primary"
-     variant="contained"
-      onClick={()=>{reg("1")}} 
-   > Eleves
-   </Button>
-   <Button style={{backgroundColor: "#0E0D47",width:'150px'}}
-     color="primary"
-     variant="contained"
-      onClick={()=>{reg("2")}} 
-   > Professeurs */}
-   {/* {m.matieress } */}
-   {/* </Button> */}
+      
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
@@ -134,16 +128,21 @@ export default function ComptaCommande() {
                       >
                        < MoreVertIcon/>
                       </Button>
-                        // <Button style={{backgroundColor: "#0E0D47" }} onClick={() => console.log( tableMeta.rowData["0"]) }>
-                        // Edit
-                        // </Button>
+                        
                       )
                   }
               }
           }
           ]}
             options={{
-              filterType: "checkbox"
+              filterType: "checkbox",
+              textLabels: {
+                body: {
+                    noMatch:  isLoading ?
+                    <CircularProgress />:
+                        'Sorry, there is no matching data to display',
+                },
+            },
             }}
           />
         </Grid>
@@ -169,7 +168,15 @@ export default function ComptaCommande() {
             "date_absence"
           ]}
             options={{
-              filterType: "checkbox"
+              filterType: "checkbox",
+              
+              textLabels: {
+                body: {
+                    noMatch:  isLoading ?
+                    <CircularProgress />:
+                        'Sorry, there is no matching data to display',
+                },
+            },
             }}
           />
                 </DialogContentText>

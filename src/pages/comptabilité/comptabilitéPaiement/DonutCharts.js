@@ -1,40 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid,Box } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import ReactApexChart from "react-apexcharts";
-import { Box } from "@material-ui/core";
+ 
 import axios from "axios";
 // components
 import Widget from "../../../components/Widget/Widget";
 import { Button } from "../../../components/Wrappers";
+import { CircularProgress } from "../../../components/Wrappers"
+
  
 
-// const [mat, setmat] =useState([]);
-// function  reg  (  ) {
-//  const d= sessionStorage.getItem('user_id')
-//   axios
-//     .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartFornisseurAdmin`)
-//     .then(res => {
-//    setmat(res.data)
-//     }, 2000)
-// } 
-// reg()
-
 export default function Charts(props) {
-  const [CoursM, seCoursM] = useState([]);
-          useEffect(function () {
-            const d= sessionStorage.getItem('user_id')
-            axios
-              .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartPaimentAdmin`)
-              .then(res => {
-                seCoursM(res.data)
-                
-              }, 2000)
-              .catch(() => {
-                console.log("ERROR")
-              });
-          }, []);
-
+  
+  
 
 
   const themeOptions = theme => {
@@ -157,17 +136,40 @@ export default function Charts(props) {
   
   };
   
+
+
+
       const theme = useTheme();
-  
-      const [state, setState] = useState(values);
+      useEffect(function () {
+        getStats()
+      }, []);
+    
+      const [state, setState] = useState(null);
+      const [isLoading, setIsLoading] = useState(true);
+    
+    
       const reset = () => {
-        setState({
-          ...state,
-          series: CoursM.series
-        });
+        getStats()
       };
-      console.log("state :" , state.series)
-      console.log("st :", CoursM.series)
+    
+      const getStats = async () => {
+        const d = sessionStorage.getItem('user_id')
+        setIsLoading(true)
+        await axios
+          .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartPaimentAdmin`)
+          .then(res => {
+            setState(res.data);
+          }, 2000)
+          .catch((e) => {
+            console.error(e)
+          });
+          setIsLoading(false)
+      };
+
+
+
+  
+   
    
  
 
@@ -178,22 +180,25 @@ export default function Charts(props) {
     <>
       <Grid container spacing={4}>
       <Grid item md={10} xs={12}>
-          <Widget title={"Gestion des fournisseurs"} noBodyPadding>
-            <ReactApexChart
-              options={themeOptions(theme)}
-              series={state.series}
-              type="donut"
-              height="380"
-              stroke={""}
-            />
+          <Widget title={"Gestion des Paiement"} noBodyPadding>
+          {
+              isLoading ?
+                <Box my={3} display="flex" flexWrap="wrap" justifyContent="center">
+                  <Box mt={1} mr={2}>
+                    <CircularProgress />
+                  </Box>
+                </Box>
+                :
+                <ReactApexChart
+                  options={themeOptions(theme)}
+                  series={state.series}
+                  type="pie"
+                  height="380"
+                  stroke={""}
+                />
+            }
           </Widget>
-          <Button
-                  variant="contained"
-                  onClick={() => reset()}
-                  color="success"
-                >
-                  reset
-                </Button>
+           
         </Grid>
  
       </Grid>
