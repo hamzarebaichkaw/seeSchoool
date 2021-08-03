@@ -18,7 +18,7 @@ import { Link,Button, Avatar } from "../../../components/Wrappers";
 import axios from "axios";
 import * as moment from 'moment'
  
-
+import Tabs from '../../profile/Components/Tabs';
 import { CircularProgress } from "../../../components/Wrappers";
 
    
@@ -29,7 +29,7 @@ import { CircularProgress } from "../../../components/Wrappers";
  
 export default function Cours() {
   const classes = useStyles();
- 
+  const [isLoading, setIsLoading] = useState(true);
 
   const [CoursM, seCoursM] = useState([]);
  
@@ -74,15 +74,11 @@ export default function Cours() {
   return (
 <div>
    <h1>Cours et exercices</h1>
-   <p style={{ padding: '24px 0 0 '}}>
-           Work
-           Private
-           Social
-         </p>
+  
  <div style={{backgroundColor:'',}}>
          <br />
-         <div style={{display:'flex', justifyContent:'space-between', }}>
-           {
+         <div >
+           {/* {
 
 CoursM.map(
 
@@ -99,7 +95,8 @@ CoursM.map(
 
        )
 
-       ) }
+       ) } */}
+  <Tabs />
          </div>
          <br />
          <br />
@@ -110,7 +107,31 @@ CoursM.map(
             noBodyPadding
             bodyClass={classes.tableWrapper}
           > */}
-         
+         <br />
+<br />
+
+<Grid container spacing={4}>
+        <Grid item xs={12}>
+          <MUIDataTable
+            title="Gestion des cours"
+            data={ CoursM }
+            columns={[    "Matiére",
+            "Type","Fichier","Date",
+          ]}
+            options={{
+              filterType: "checkbox",
+              
+              textLabels: {
+                body: {
+                    noMatch:  isLoading ?
+                    <CircularProgress />:
+                        'Sorry, there is no matching data to display',
+                },
+            },
+            }}
+          />
+        </Grid>
+      </Grid>
 
 
  
@@ -132,7 +153,7 @@ mat.map((item) => (
 
 
  
- 
+{/*  
        <Table className="mb-0">
       <TableHead>
         <TableRow>
@@ -187,7 +208,7 @@ mat.map((item) => (
         } 
       </TableBody>
     </Table>
-  
+   */}
           {/* </Widget> */}
           </div>
           </div>

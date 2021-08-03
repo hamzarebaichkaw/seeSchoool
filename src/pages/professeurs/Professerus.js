@@ -17,6 +17,8 @@ import NotificationsProfs from './NotificationProfs/NotificationProfs';
 import HomeworksProfs from './HomeworkProfs/HomeworkProfs';
 import CoursProfs from './CoursProfs/CoursProfs';
 import SupportProfs from './supportProf/SupportProfs';
+import CongeProf from './congeProf/CongeProf';
+import ExamenProf from './examenProf/Examen';
 
 
 function Layout(props) {
@@ -70,7 +72,9 @@ return(
                     <Route path="/Professeur/Events" component={EventsProfs} />
                     <Route path="/Professeur/assuidité" component={AssuiditeProf} />
                     <Route path="/Professeur/homework" component={HomeworksProfs} />
+                    <Route path="/Professeur/conges" component={CongeProf} />
                     <Route path="/Professeur/support" component={SupportProfs} />
+                    <Route path="/Professeur/examen" component={ExamenProf} />
                 </Switch>
              
                 {/* <Footer>

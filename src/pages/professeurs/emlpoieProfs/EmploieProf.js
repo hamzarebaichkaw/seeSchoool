@@ -84,6 +84,19 @@ CoursM.map(
        ) }
          </div>
          </div>
+         <br /> <br /> <br />
+         <div style={{backgroundColor:'grey',height:'250px', display:'flex', justifyContent:'center'}}>
+        
+         <Button
+  style={{backgroundColor: "#3a86ff",borderRadius:'20px', letterSpacing:5,height:'50px',marginTop:'90px'}}
+  color="primary"
+  variant="contained"
+   
+>
+Telecharger
+</Button>
+
+         </div>
          </div>
 )
 

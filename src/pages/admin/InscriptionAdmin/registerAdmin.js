@@ -1,4 +1,337 @@
-import React from 'react'
+// import React, {useState, useEffect} from 'react'
+// import Stepper from '@material-ui/core/Stepper'
+// import Step from '@material-ui/core/Step'
+// import StepLabel from '@material-ui/core/StepLabel'
+// import Grid from '@material-ui/core/Grid'
+// import Box from '@material-ui/core/Box'
+// import TextField from '@material-ui/core/TextField'
+// import FormControl from '@material-ui/core/FormControl'
+// import InputLabel from '@material-ui/core/InputLabel'
+// import Select from '@material-ui/core/Select'
+// import MenuItem from '@material-ui/core/MenuItem'
+// import FormHelperText from '@material-ui/core/FormHelperText'
+// import { useHistory } from 'react-router-dom'
+// import useStyles from './styles'
+// import { toast } from 'react-toastify'
+// import Axios from 'axios'
+// import config from '../../../config'
+// import uuid from 'uuid/v4'
+
+// import Notification from "../../../components/Notification";
+
+// import { Button, Typography } from '../../../components/Wrappers'
+// import Widget from '../../../components/Widget'
+
+// import { actions } from '../../../context/ManagementContext'
+// import {
+//   useManagementDispatch,
+// } from '../../../context/ManagementContext'
+
+
+// function getSteps() {
+//     return ['Create Account', ]
+// }
+
+// function getStepContent(step) {
+//     switch (step) {
+//         case 0:
+//             return 'Create New Account'
+//         //  case 1:
+//         //      return 'Create User Details'
+//         // case 2:
+//         //     return 'Business Details'
+//         // case 3:
+//         //     return 'Social'
+//         // default:
+//         //     return ''
+//     }
+// }
+// //try {
+//     //     dispatch({
+//     //       type: 'USERS_FORM_CREATE_STARTED',
+//     //     });
+//     //     axios.post('/api/users', 
+     
+//     //    {  body: JSON.stringify(  {
+//     //         "fullName": "dsqsdd",
+//     //     "username": "  sdqsddda" ,
+//     //     "email": "dddsqsq@example.com",
+//     //     "password": "ddsqsd",
+//     //     "roles": [
+//     //       "Student"
+//     //     ],
+//     //     "Genre": "dd",
+//     //     "Nationalite": "tessss",
+//     //     "phone": "tessss" 
+//     //    })
+//     //   }
+        
+//     //     ,
+        
+//     //  {
+    
+//     // "headers" :{ 
+//     // 'Accept': 'application/json', 
+//     // "Content-Type":"application/json"
+    
+//     // }
+    
+//     //  }   
+        
+//     //     ).then(res => {
+//     //       dispatch({
+//     //         type: 'USERS_FORM_CREATE_SUCCESS',
+//     //       });
+//     //       history.push('/admin/Inscription');
+//     //     })
+//     //   } catch (error) {
+//     //     toast("Error");
+//     //     console.log(error)
+//     //     dispatch({
+//     //       type: 'USERS_FORM_CREATE_ERROR',
+//     //     });
+//     //   }
+// const AddUser = () => {
+//     var [fullName, setfullName] = useState("");
+//     var [username, setusername] = useState("");
+//     var [email, setemail] = useState("");
+//     var [password, setpassword] = useState("");
+//     var [Genre, setGenre] = useState("");
+//     var [date_naissance, setdate_naissance] = useState("");
+//     var [Nationalite, setNationalite] = useState("");
+//     var [idStudent, setidStudent] = useState("");
+//     const [CoursM, seCoursM] = useState([]);
+//     useEffect(function () {
+//       const d= sessionStorage.getItem('user_id')
+//       Axios
+//         .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ClassesAdmin`)
+//         .then(res => {
+//           seCoursM(res.data.result)
+//           // console.log(res.data.result)
+//         }, 2000)
+//         .catch(() => {
+//           console.log("ERROR")
+//         });
+//     }, []);
+
+
+
+
+//     function Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite
+       
+       
+//       ){
+
+     
+      
+  
+//         Axios
+//             .post('http://www.pointofsaleseedigitalaency.xyz/public/api/users', 
+            
+//             {
+//                 "fullName": fullName,
+      
+//                 "username": username,
+//                 "email": email,              
+//                 "password":password,
+//                 "Genre":Genre,
+//                 "date_naissance":date_naissance,
+//                 "Nationalite":Nationalite
+//             })
+//             .then( 
+
+//               res => {
+//                   console.log(res.data)
+                  
+                
+//                   setidStudent(res.data.id)
+                
+//                 }
+
+//             )
+             
+       
+
+
+
+
+//       }
+
+
+
+
+
+//     return(
+//         <Grid item justify={'center'} container>
+//         <Box
+//             display={'flex'}
+//             flexDirection={'column'}
+//             width={600}
+//         >
+//             <Typography
+//                 variant={'h5'}
+//                 weight={'medium'}
+//                 style={{ marginBottom: 30 }}
+//             >
+//                   </Typography>
+//                   <h1>Ajouter un utilisateur</h1>
+//         <>
+//         <TextField
+//             id="outlined-basic"
+//             label="fullName"
+//             // onChange={}
+//             name="fullName"
+//             value={fullName}
+//             onChange={e => setfullName(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText="S'il vous ajouter votre full name"
+//         />
+//         <TextField
+//             id="outlined-basic"
+//             label="username"
+//             // onChange={}
+//             // value={}
+//             name="username"
+//             value={username}
+//             onChange={e => setusername(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText= "S'il vous plait entrer le nom "
+//             type={'textera'}
+//         />
+//          <TextField
+//             id="outlined-basic"
+//             label="email"
+//             // onChange={}
+//             // value={}
+//             name="email"
+//             value={email}
+//             onChange={e => setemail(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText= "S'il vous plait entrer votre email "
+//             type={'textera'}
+//         />
+//              <TextField
+//             id="outlined-basic"
+//             label="password"
+//             // onChange={}
+//             // value={}
+//             name="password"
+//             value={password}
+//             onChange={e => setpassword(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText= "S'il vous plait entrer le mdp "
+//             type={'textera'}
+//         />
+//               <TextField
+//                                         id="outlined-basic"
+//                                         label="roles"
+                                       
+//                                         name="roles"
+//                                         // value={newUser.fullName || ''}
+//                                         variant="outlined"
+//                                         style={{ marginBottom: 35 }}
+//                                         helperText="Please enter your role"
+//                                         defaultValue="Student "
+//                                     />
+//           {/* <FormControl
+//             variant="outlined"
+//             // onChange={}
+//             style={{ marginBottom: 35 }}
+//         >
+           
+//             {/* <Select
+              
+               
+//                 name="Class"
+//                 onChange={e => setclas(e.target.value)}
+//                 label="Class"
+//             >
+            
+//              {   CoursM.map(
+//   (m)=>( 
+ 
+
+// <MenuItem value={m.id}
+// key={m.id}
+ 
+// >{m.matieress }</MenuItem>
+//        )
+//        )}
+//             </Select> */}
+//                    {/* <Select
+              
+      
+//                 name="Class"
+               
+//                 label="Class"
+//             >
+
+//             </Select> 
+   
+//         </FormControl> */} 
+//           <TextField
+//             id="outlined-basic"
+//             label="Genre"
+//             // onChange={}
+//             // value={}
+//             name="Genre"
+//             value={Genre}
+//             onChange={e => setGenre(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText= "S'il vous plait entrer votre genre "
+//             type={'textera'}
+//         />
+//          <TextField
+//     id="date"
+//     label="date de naissance"
+//     type="date"
+//     defaultValue="2017-05-24"
+//     onChange={e => setdate_naissance(e.target.value)}
+//     InputLabelProps={{
+//       shrink: true,
+//     }}
+//   />
+//   <br />
+//   <br />
+//                  <TextField
+//             id="outlined-basic"
+//             label="Nationalite"
+//             // onChange={}
+//             // value={}
+//             name="Nationalite"
+//             value={Nationalite}
+//             onChange={e => setNationalite(e.target.value)}
+//             variant="outlined"
+//             style={{ marginBottom: 35 }}
+//             helperText= "S'il vous plait entrer Votre nationatlité "
+//             type={'textera'}
+//         />
+      
+//         <Button
+//                   color="primary"
+//                   variant="contained"
+//                   onClick={()=>{Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite)}} 
+//                 >
+//                   envoyer
+//                 </Button>
+//     </>
+//     </Box>
+//                     </Grid>
+//      ) }
+
+
+// export default AddUser
+
+
+
+
+
+import React, {useEffect, useState} from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -29,7 +362,7 @@ import {
 
 
 function getSteps() {
-    return ['Create Account', 'User Details', 'Business Details', 'Social']
+    return ['Create Account', 'User Details', ]
 }
 
 function getStepContent(step) {
@@ -38,12 +371,12 @@ function getStepContent(step) {
             return 'Create New Account'
         case 1:
             return 'Create User Details'
-        case 2:
-            return 'Business Details'
-        case 3:
-            return 'Social'
-        default:
-            return ''
+        // case 2:
+        //     return 'Business Details'
+        // case 3:
+        //     return 'Social'
+        // default:
+        //     return ''
     }
 }
 //try {
@@ -239,6 +572,149 @@ const AddUser = () => {
         options
       );
     }
+
+    var [imagestudent, setimagestudent] = useState("");
+    
+
+
+
+    var [fullName, setfullName] = useState("");
+    var [username, setusername] = useState("");
+    var [email, setemail] = useState("");
+    var [password, setpassword] = useState("");
+    var [Genre, setGenre] = useState("");
+    var [date_naissance, setdate_naissance] = useState("");
+    var [Nationalite, setNationalite] = useState("");
+    var [idStudent, setidStudent] = useState("");
+    const [CoursM, seCoursM] = useState([]);
+    useEffect(function () {
+      const d= sessionStorage.getItem('user_id')
+      Axios
+        .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ClassesAdmin`)
+        .then(res => {
+          seCoursM(res.data.result)
+          // console.log(res.data.result)
+        }, 2000)
+        .catch(() => {
+          console.log("ERROR")
+        });
+    }, []);
+
+
+
+
+    function Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite
+       
+       
+      ){
+
+     
+      
+  
+        Axios
+            .post('http://www.pointofsaleseedigitalaency.xyz/public/api/users', 
+            
+            {
+                "fullName": fullName,
+      
+                "username": username,
+                "email": email,              
+                "password":password,
+                "Genre":Genre,
+                "date_naissance":date_naissance,
+                "Nationalite":Nationalite
+            })
+            .then( 
+
+              res => {
+                  console.log(res.data)
+                  
+                
+                  setidStudent(res.data.id)
+                
+                }
+
+            )
+             
+       
+
+
+
+
+      }
+      function addimg(imagestudent,idStudent
+       
+       
+        ){
+
+    //   e.preventDefault();
+      const formData = new FormData();
+      Array.from(imagestudent).forEach(image => {
+        formData.append('files', image);
+      });
+      Axios
+        .post(`http://www.pointofsaleseedigitalaency.xyz/public/api/media_objects`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+
+
+
+    //   function addimg(imagestudent,idStudent
+       
+       
+    //     ){
+  
+       
+        
+    
+    //       Axios
+    //           .post('http://www.pointofsaleseedigitalaency.xyz/public/api/media_objects', 
+              
+    //           {
+    //               "file": imagestudent,
+    //                 "id_media" : idStudent
+               
+    //           },
+    //           {"headers" :{ 
+    //             "Content-Type":"application/x-www-form-urlencoded"
+    //           }
+    //         }
+              
+    //           )
+
+    //           .then( 
+  
+    //             res => {
+    //                 console.log(imagestudent)
+                    
+                  
+                   
+                  
+    //               }
+  
+    //           )
+    //           .catch((e) => {
+    //             console.log(e)
+    //         })
+               
+              
+            
+         
+  
+  
+  
+  
+        }
+
+
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -276,45 +752,47 @@ const AddUser = () => {
                             >
                                 {getStepContent(activeStep)}
                             </Typography>
+                            <h1>Ajouter un utilisateur</h1>
                             {activeStep === 0 ? (
                                 <>
+                                   <TextField
+            id="outlined-basic"
+            label="fullName"
+            // onChange={}
+            name="fullName"
+            value={fullName}
+            onChange={e => setfullName(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText="S'il vous ajouter votre full name"
+        />
+                                 <TextField
+            id="outlined-basic"
+            label="username"
+            // onChange={}
+            // value={}
+            name="username"
+            value={username}
+            onChange={e => setusername(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer le nom "
+            type={'textera'}
+        />
                                     <TextField
-                                        id="outlined-basic"
-                                        label="Username"
-                                        onChange={handleChange}
-                                        name="fullName"
-                                        value={newUser.fullName || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText="Please enter your username"
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Email Address"
-                                        onChange={handleChange}
-                                        value={newUser.email || ''}
-                                        name="email"
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={
-                                            'We’ll never share your email with anyone else'
-                                        }
-                                        type={'email'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Password"
-                                        onChange={handleChange}
-                                        name="password"
-                                        value={newUser.password || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={
-                                            'Enter your password. Min 6 characters long'
-                                        }
-                                        type={'password'}
-                                    />
-                                    <FormControl
+            id="outlined-basic"
+            label="email"
+            // onChange={}
+            // value={}
+            name="email"
+            value={email}
+            onChange={e => setemail(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer votre email "
+            type={'textera'}
+        />
+                                    {/* <FormControl
                                         variant="outlined"
                                         onChange={handleChange}
                                         style={{ marginBottom: 35 }}
@@ -339,7 +817,69 @@ const AddUser = () => {
                                         >
                                             Please choose the role
                                         </FormHelperText>
-                                    </FormControl>
+                                    </FormControl> */}
+                                                 <TextField
+            id="outlined-basic"
+            label="password"
+            // onChange={}
+            // value={}
+            name="password"
+            value={password}
+            onChange={e => setpassword(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer le mdp "
+            type={'textera'}
+        />
+         <TextField
+                                        id="outlined-basic"
+                                        label="roles"
+                                       
+                                        name="roles"
+                                        // value={newUser.fullName || ''}
+                                        variant="outlined"
+                                        style={{ marginBottom: 35 }}
+                                        helperText="Please enter your role"
+                                        defaultValue="Student "
+                                    />
+                                     <TextField
+            id="outlined-basic"
+            label="Genre"
+            // onChange={}
+            // value={}
+            name="Genre"
+            value={Genre}
+            onChange={e => setGenre(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer votre genre "
+            type={'textera'}
+        />
+         <TextField
+    id="date"
+    label="date de naissance"
+    type="date"
+    defaultValue="2017-05-24"
+    onChange={e => setdate_naissance(e.target.value)}
+    InputLabelProps={{
+      shrink: true,
+    }}
+  />
+  <br />
+  <br />
+                 <TextField
+            id="outlined-basic"
+            label="Nationalite"
+            // onChange={}
+            // value={}
+            name="Nationalite"
+            value={Nationalite}
+            onChange={e => setNationalite(e.target.value)}
+            variant="outlined"
+            style={{ marginBottom: 35 }}
+            helperText= "S'il vous plait entrer Votre nationatlité "
+            type={'textera'}
+        />
                                 </>
                             ) : activeStep === 1 ? (
                                 <>
@@ -365,34 +905,16 @@ const AddUser = () => {
                                       style={{ cursor: 'pointer' }}
                                     >
                                       {'Upload an image'}
-                                        <input style={{ display: 'none' }} accept="image/*" type="file" ref={fileInput} onChange={handleFile} />
+                                        <input style={{ display: 'none' }} accept="image/*" type="file" ref={fileInput}   value={imagestudent}
+            onChange={e => setimagestudent(e.target.value)} />
                                     </label>
                                     <Typography
                                         size={'sm'}
                                         style={{ marginBottom: 35 }}
                                     >
-                                        .PNG, .JPG, .JPEG
+                                       
                                     </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="First Name"
-                                        onChange={handleChange}
-                                        name="firstName"
-                                        value={newUser.firstName || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText="Enter your first name"
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Last Name"
-                                        onChange={handleChange}
-                                        name="lastName"
-                                        value={newUser.lastName || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your last name'}
-                                    />
+                                   
                                     <TextField
                                         id="outlined-basic"
                                         label="Contact number"
@@ -405,7 +927,7 @@ const AddUser = () => {
                                             'Enter your contact number '
                                         }
                                     />
-                                    <TextField
+                                    {/* <TextField
                                         id="outlined-basic"
                                         label="Email"
                                         variant="outlined"
@@ -413,7 +935,7 @@ const AddUser = () => {
                                         style={{ marginBottom: 35 }}
                                         helperText={'Enter your email'}
                                         type={'email'}
-                                    />
+                                    /> */}
                                     <FormControl
                                         variant="outlined"
                                         style={{ marginBottom: 35 }}
@@ -508,93 +1030,13 @@ const AddUser = () => {
                                 </>
                             ) : activeStep === 2 ? (
                                 <>
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Company Name"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText="Enter your company name"
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Company Registered ID"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={
-                                            'Enter your company registered ID'
-                                        }
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Cmpany Email"
-                                        onChange={handleChange}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your company email'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        value={''}
-                                        label="Company Contact"
-                                        onChange={handleChange}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={
-                                            'Enter your company cpntact'
-                                        }
-                                    />
+                         
+                                 
+                                 
                                 </>
                             ) : (
                                 <>
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Facebook"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText="Enter your Facebook link"
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Twitter"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your Twitter link'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Instagram"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your Instagram link'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="GitHub"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your GitHub link'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="CodePen"
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your CodePen link'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Slack"
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your Slack link'}
-                                    />
+                                
                                 </>
                             )}
                             <div>
@@ -607,10 +1049,15 @@ const AddUser = () => {
                                             <Button
                                                 variant="contained"
                                                 color="primary"
-                                                onClick={handleNext}
+                                                onClick={() => {
+                                                    handleNext();
+                                                    {Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite)}
+                                                }}
                                             >
                                                 Next
                                             </Button>
+                                          
+        
                                         </Box>
                                     ) : (
                                         <Box
@@ -627,7 +1074,10 @@ const AddUser = () => {
                                             <Button
                                                 variant="contained"
                                                 color="primary"
-                                                onClick={handleNext}
+                                                onClick={() => {
+                                                    handleNext();
+                                                    {addimg(imagestudent,idStudent)}
+                                                }}
                                             >
                                                 {activeStep === steps.length - 1
                                                     ? 'Finish'

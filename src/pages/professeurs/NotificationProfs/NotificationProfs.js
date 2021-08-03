@@ -15,7 +15,7 @@ export default function NotificationsProfs(){
       const d= sessionStorage.getItem('user_id')
       axios
         // .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Matiere/${d}`)
-        .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Notfication/1`)
+        .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/NotficationProf/15`)
         .then(res => {
           seCoursM(res.data)
           // console.log(res.data.result)
@@ -34,11 +34,11 @@ export default function NotificationsProfs(){
   
         (m)=>( 
       
-      <div style={{backgroundColor:'#e2eafc', border: 'thick double #3a86ff',}} >
+      <div style={{backgroundColor:'#e2eafc', border: 'thick double #3a86ff',display:'flex', justifyContent:'space-evenly'}} >
         <p> <NotificationsActiveIcon />
-          {m.Message}
+          {m.Message}   
           </p>
-     
+     <p style={{backgroundColor:'yellow'}}>{m.Status}</p>
      
           <br />
           <br />

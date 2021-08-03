@@ -1,6 +1,6 @@
-//AddProfs
 
-import React, {useState,useEffect} from 'react'
+
+import React, {useEffect, useState} from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -40,8 +40,12 @@ function getStepContent(step) {
             return 'Create New Account'
         case 1:
             return 'Create User Details'
-       
-      
+        // case 2:
+        //     return 'Business Details'
+        // case 3:
+        //     return 'Social'
+        // default:
+        //     return ''
     }
 }
 //try {
@@ -89,7 +93,7 @@ function getStepContent(step) {
     //       type: 'USERS_FORM_CREATE_ERROR',
     //     });
     //   }
-const AddProfs = () => {
+const Imggg = () => {
     const [activeStep, setActiveStep] = React.useState(0)
     const [skipped, setSkipped] = React.useState(new Set())
     const [newUser, setNewUser] = React.useState({
@@ -238,6 +242,8 @@ const AddProfs = () => {
       );
     }
 
+   
+    
 
 
 
@@ -248,80 +254,56 @@ const AddProfs = () => {
     var [Genre, setGenre] = useState("");
     var [date_naissance, setdate_naissance] = useState("");
     var [Nationalite, setNationalite] = useState("");
-    var [idProf, setidProf] = useState("");
+    var [idStudent, setidStudent] = useState("");
+    const [CoursM, seCoursM] = useState([]);
+    useEffect(function () {
+      const d= sessionStorage.getItem('user_id')
+      Axios
+        .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ClassesAdmin`)
+        .then(res => {
+          seCoursM(res.data.result)
+          // console.log(res.data.result)
+        }, 2000)
+        .catch(() => {
+          console.log("ERROR")
+        });
+    }, []);
 
-    var [phone, setphone] = useState("");
-    var [niveau, setniveau] = useState("");
-    var [sous_niveau, setsous_niveau] = useState("");
-    var [description, setdescription] = useState("");
-   
 
 
+    var [imagestudent, setimagestudent] = useState("");
 
-
-    function ADDPROF(fullName,username,email,password,Genre,date_naissance,Nationalite
- 
+      function addimg(imagestudent,
+       
+       
         ){
- 
+  
+          const formData = new FormData();
+               formData.append("file", imagestudent[0] );
+          
+            
           Axios
-              .post('http://www.pointofsaleseedigitalaency.xyz/public/api/users', 
+              .post('http://www.pointofsaleseedigitalaency.xyz/public/api/media_objects', 
               
-              {
-                  "fullName": fullName,
-        
-                  "username": username,
-                  "email": email,              
-                  "password":password,
-                  "Genre":Genre,
-                  "date_naissance":date_naissance,
-                  "Nationalite":Nationalite
-              })
-              .then( 
-  
-                res => {
-                    console.log(res.data)
-                    
-                  
-                    setidProf(res.data.id)
-                  
-                  }
-  
+           formData 
+              ,
+                {
+                    "headers" :
+                                    { 
+
+                                      "Content-Type":"multipart/form-data",
+                                    }
+                }
+              
               )
 
-        }
-
-
-
-
-        
-
-    function AddProf(phone,niveau,sous_niveau,description
-       
-       
-        ){
-  
-       
-        
-    
-          Axios
-              .post('http://www.pointofsaleseedigitalaency.xyz/public/api/enseignants', 
-              
-              {
-                 
-        
-                  "phone": phone,
-                  "niveau": niveau,              
-                  "sous_niveau":sous_niveau,
-                  "description":description,
-                
-              })
               .then( 
   
                 res => {
                     console.log(res.data)
                     
                   
-                    setidProf(res.data.id)
+                   
                   
                   }
   
@@ -333,6 +315,8 @@ const AddProfs = () => {
   
   
         }
+
+
 
     return (
         <Grid container spacing={3}>
@@ -371,138 +355,13 @@ const AddProfs = () => {
                             >
                                 {getStepContent(activeStep)}
                             </Typography>
+                            <h1>Ajouter un utilisateur</h1>
                             {activeStep === 0 ? (
                                 <>
-                                      <TextField
-            id="outlined-basic"
-            label="fullName"
-            // onChange={}
-            name="fullName"
-            value={fullName}
-            onChange={e => setfullName(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText="S'il vous ajouter votre full name"
-        />
-                                 <TextField
-            id="outlined-basic"
-            label="username"
-            // onChange={}
-            // value={}
-            name="username"
-            value={username}
-            onChange={e => setusername(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer le nom "
-            type={'textera'}
-        />
-                                    <TextField
-            id="outlined-basic"
-            label="email"
-            // onChange={}
-            // value={}
-            name="email"
-            value={email}
-            onChange={e => setemail(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer votre email "
-            type={'textera'}
-        />
-                                    {/* <FormControl
-                                        variant="outlined"
-                                        onChange={handleChange}
-                                        style={{ marginBottom: 35 }}
-                                    >
-                                        <InputLabel id="demo-simple-select-outlined-label">
-                                            Role
-                                        </InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-outlined-label"
-                                            id="demo-simple-select-outlined"
-                                            value={newUser.role || "user"}
-                                            defaultValue="User"
-                                            name="role"
-                                            onChange={handleChange}
-                                            label="Role"
-                                        >
-                                            <MenuItem value="user">User</MenuItem>
-                                            <MenuItem value="admin">Admin</MenuItem>
-                                        </Select>
-                                        <FormHelperText
-                                            id={'demo-simple-select-outlined'}
-                                        >
-                                            Please choose the role
-                                        </FormHelperText>
-                                    </FormControl> */}
-                                                 <TextField
-            id="outlined-basic"
-            label="password"
-            // onChange={}
-            // value={}
-            name="password"
-            value={password}
-            onChange={e => setpassword(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer le mdp "
-            type={'textera'}
-        />
-         <TextField
-                                        id="outlined-basic"
-                                        label="roles"
-                                       
-                                        name="roles"
-                                        // value={newUser.fullName || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText="Please enter your role"
-                                        defaultValue="Professeur "
-                                    />
-                                     <TextField
-            id="outlined-basic"
-            label="Genre"
-            // onChange={}
-            // value={}
-            name="Genre"
-            value={Genre}
-            onChange={e => setGenre(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer votre genre "
-            type={'textera'}
-        />
-         <TextField
-    id="date"
-    label="date de naissance"
-    type="date"
-    defaultValue="2017-05-24"
-    onChange={e => setdate_naissance(e.target.value)}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-  <br />
-  <br />
-                 <TextField
-            id="outlined-basic"
-            label="Nationalite"
-            // onChange={}
-            // value={}
-            name="Nationalite"
-            value={Nationalite}
-            onChange={e => setNationalite(e.target.value)}
-            variant="outlined"
-            style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer Votre nationatlité "
-            type={'textera'}
-        />
-                                </>
-                            ) : activeStep === 1 ? (
-                                <>
-                                  
-                                    {/* <div class={classes.galleryWrap}>
+                                    <Typography weight={'medium'}>
+                                        Photo:
+                                    </Typography>
+                                    <div class={classes.galleryWrap}>
                                     {newUser && newUser.avatars && newUser.avatars.length !== 0 ? (
                                       newUser.avatars.map((avatar, idx) => (
                                         <div className={classes.imgWrap}>
@@ -515,67 +374,36 @@ const AddProfs = () => {
                                         </div>
                                       ))
                                     ): null}
-                                    </div> */}
-                                    
-                                  
-                                    <TextField
-                                        id="outlined-basic"
-                                        label=" phone"
-                                       // onChange={handleChange}
-                                        name="phone"
-                                        value={phone}
-                                        onChange={e => setphone(e.target.value)}
-                                        variant="outlined"
+                                    </div>
+                                    <label
+                                      className={classes.uploadLabel}
+                                      style={{ cursor: 'pointer' }}
+                                    >
+                                      {'Upload an image'}
+                                        <input style={{ display: 'none' }} accept="image/*" type="file" ref={fileInput}   
+            onChange={e => setimagestudent(e.target.files)} />
+                                    </label>
+                                    <Typography
+                                        size={'sm'}
                                         style={{ marginBottom: 35 }}
-                                        helperText="Enter your phone"
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="niveau"
-                                        value={niveau}
-                                        onChange={e => setniveau(e.target.value)}
-                                        name="niveau"
-                                      //  value={newUser.lastName || ''}
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your last name'}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label=" sous_niveau"
-                                        value={sous_niveau}
-                                        onChange={e => setsous_niveau(e.target.value)}
-                                        name="sous_niveau"
-                                        variant="outlined"
-                                        style={{ marginBottom: 35 }}
-                                        helperText={
-                                            'Enter your  niveau '
-                                        }
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="description"
-                                        variant="outlined"
-                                        value={description}
-                                        onChange={e => setdescription(e.target.value)}
-                                       // value={newUser.email || ''}
-                                        style={{ marginBottom: 35 }}
-                                        helperText={'Enter your description'}
+                                    >
                                        
-                                    />
-                              
-                             
+                                    </Typography>
+                                </>
+                            ) : activeStep === 1 ? (
+                                <>
+                                  
+                                  
                                 </>
                             ) : activeStep === 2 ? (
                                 <>
-                                
-                                   
-                                
+                         
+                                 
                                  
                                 </>
                             ) : (
                                 <>
-                           
+                                
                                 </>
                             )}
                             <div>
@@ -590,11 +418,13 @@ const AddProfs = () => {
                                                 color="primary"
                                                 onClick={() => {
                                                     handleNext();
-                                                    {ADDPROF(fullName,username,email,password,Genre,date_naissance,Nationalite)}
+                                                    {addimg(imagestudent)}
                                                 }}
                                             >
                                                 Next
                                             </Button>
+                                          
+        
                                         </Box>
                                     ) : (
                                         <Box
@@ -613,7 +443,7 @@ const AddProfs = () => {
                                                 color="primary"
                                                 onClick={() => {
                                                     handleNext();
-                                                    {AddProf(phone,niveau,sous_niveau,description)}
+                                                    {addimg(imagestudent,idStudent)}
                                                 }}
                                             >
                                                 {activeStep === steps.length - 1
@@ -632,4 +462,4 @@ const AddProfs = () => {
     )
 }
 
-export default AddProfs
+export default Imggg

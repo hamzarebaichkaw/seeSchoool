@@ -44,7 +44,7 @@ const structure = [
     { id: 55, label: 'Gestion des classes', link: '/admin/classes', icon: <ForumIcon /> },
     { id: 56, label: 'Gestion des matiéres', link: '/admin/matiéres', icon: <ForumIcon /> },
     { id: 57, label: 'Gestion des Conge', link: '/admin/conges', icon: <ForumIcon /> },
-    
+    { id: 58, label: 'Ajouter un Evenement', link: '/admin/event', icon: <ForumIcon /> },
 ]
 
 function AddSection() {

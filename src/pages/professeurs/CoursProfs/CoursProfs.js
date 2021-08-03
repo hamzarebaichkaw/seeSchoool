@@ -2,7 +2,7 @@ import React from 'react';
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import axios from "axios";
 import useStyles from "./styles";
-
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 
 export default function CoursProfs(){
@@ -53,9 +53,31 @@ Bac Maths
 1ére
 </Button>
         </div>
-        <div>
+        <br />
+        <br />
+        <div style={{border:'Dashed' , color:'#3a86ff', height:'250px', display:'flex', justifyContent:'center'}}>
+        <Button  
+  style={{backgroundColor: "",borderRadius:'20px', letterSpacing:5,marginTop:'90px', height:'30px'}}
+  color="primary"
+  variant="contained"
+
+  
+>
+<CloudUploadIcon />
+
+Glissez - Deposez ici ou parcourez
+</Button>
 
         </div>
+        <br />
+<Button
+              color="primary"
+              variant="contained"
+             
+              style={{backgroundColor: "#3a86ff",width:'100%'}}
+            >
+              Save
+            </Button>
     </div>
 )
 

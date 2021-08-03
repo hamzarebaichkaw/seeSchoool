@@ -39,7 +39,7 @@ return (
               color="primary"
               variant="contained"
               className={classes.button}
-              style={{backgroundColor: "#3a86ff",}}
+              style={{backgroundColor: "#3a86ff"}}
             >
               envoyer
             </Button>

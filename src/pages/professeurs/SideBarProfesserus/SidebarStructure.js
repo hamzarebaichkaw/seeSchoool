@@ -42,6 +42,8 @@ const structure = [
     { id: 53, label: 'Gestion des notes', link: '/Professeur/notes', icon: <ForumIcon /> },
     { id: 54, label: ' Events', link: '/Professeur/Events', icon: <ForumIcon /> },
     { id: 55, label: ' Gestion des assuidité', link: '/Professeur/assuidité', icon: <ForumIcon /> },
+    { id: 55, label: ' Gestion des Conges', link: '/Professeur/conges', icon: <ForumIcon /> },
+    { id: 55, label: ' Gestion des Examens', link: '/Professeur/examen', icon: <ForumIcon /> },
     { id: 56, label: 'Homework', link: '/Professeur/homework', icon: <ForumIcon /> },
     { id: 56, label: 'Support', link: '/Professeur/support', icon: <ForumIcon /> },
     

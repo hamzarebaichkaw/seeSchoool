@@ -52,7 +52,9 @@ import ProfAdmin from './ProfAdmin/ProfAdmin'
 import Assuidite from './AssiduiteAdmin/AssiduiteAdmin'
 import AddClasse from './classesAdmin/AddClasse'
 import AddProfs from './ProfAdmin/AddProf'
-
+import imggg from './InscriptionAdmin/img'
+import Imggg from './InscriptionAdmin/img'
+import AddEvent from './EventAdmin/EventAdmin'
  
 
 function Layout(props) {
@@ -108,6 +110,8 @@ function Layout(props) {
                     <Route path="/admin/conges" component={CongesAdmin} />
                     <Route path="/admin/addclasse" component={AddClasse} />
                     <Route path="/admin/addprof" component={AddProfs} />
+                    <Route path="/admin/img" component={Imggg} />
+                    <Route path="/admin/event" component={AddEvent} />
                 </Switch>
              
                 {/* <Footer>
