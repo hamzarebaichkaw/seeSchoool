@@ -4,7 +4,7 @@ import { Grid,  Box } from "@material-ui/core";
     import MUIDataTable from "mui-datatables";
     import axios from "axios";
     import { CircularProgress } from "../../../components/Wrappers"
- 
+    import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ReactApexChart from './DonutCharts'
 export default function ComptaFournisseur() {
   const [mat, setmat] =useState([]);
@@ -63,8 +63,20 @@ const Table = () =>
 
     return(
 <div>
+  <div style={{display:'flex', justifyContent:'space-between'}}>
     <h1>Gestion des Fournisseurs</h1>
-    <br />
+    <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addfournisseur" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px'}}>
+      Ajouter un Fournisseur  <AddCircleIcon />
+      </Button>
+   
+      </div>
+      <br />    <br />
+      <div style={{display:'flex', justifyContent:'flex-end'}}>
+      <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addproduit" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px',width:'310px'}}>
+      Ajouter un Produit  <AddCircleIcon />
+      </Button>
+      </div>
+    <br />    <br />    <br />
     <div style={{display:'flex', justifyContent:'space-evenly'}}>
     <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"

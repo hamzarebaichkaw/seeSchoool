@@ -16,6 +16,9 @@ import ComptaExel from './comptabilitéExel/comptaExel';
 import ComptaCommande from './comptabilitéCommande/comptaCommande';
 import ComptaHistorique from './comptabilitéHistorique/comptaHistorique';
 import ComptaDashboard from './comptabilitéDashboard/comptabilitéDashboard';
+import AddFournisseur from './comptabilitéFournisseur/Addfournisseur';
+import AddProduit from './comptabilitéFournisseur/addProduit';
+import AddOrdre from './comptabilitéCommande/addOrdre';
 
 
 function Layout(props) {
@@ -69,7 +72,9 @@ return(
                     <Route path="/comptabilite/exel" component={ComptaExel} />
                     <Route path="/comptabilite/commande" component={ComptaCommande} />
                     <Route path="/comptabilite/historique" component={ComptaHistorique} />
-                    
+                    <Route path="/comptabilite/addfournisseur" component={AddFournisseur} />
+                    <Route path="/comptabilite/addproduit" component={AddProduit} />
+                    <Route path="/comptabilite/addordre" component={AddOrdre} />
                 </Switch>
              
                 {/* <Footer>

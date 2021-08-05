@@ -35,6 +35,7 @@ import Homework from './homeworkParent/Homework'
 import Support from './supportParent/Support'
 import payement from './payementParent/PayementParent'
 import Payement from './payementParent/PayementParent'
+import DashboardParent from './DashboardParent/DashboardParent'
  
 
 function Layout(props) {
@@ -77,7 +78,7 @@ function Layout(props) {
                 <div className={classes.fakeToolbar} />
             
                 <Switch>
-                  <Route path="/parent/profile" component={Emploi} />
+                  <Route path="/parent/profile" component={DashboardParent} />
                     <Route path="/parent/emploie" component={Emploi} />
                     <Route path="/parent/cours" component={Coursparent} />
                     <Route path="/parent/notification" component={Notification} />
@@ -86,7 +87,7 @@ function Layout(props) {
                     <Route path="/parent/absence" component={Absences} />
                     <Route path="/parent/HomeWork" component={Homework} />
                     <Route path="/parent/Support" component={Support} />
-
+                  
                     <Route path="/parent/payement" component={Payement} />
                 </Switch>
              

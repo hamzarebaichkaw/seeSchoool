@@ -62,11 +62,10 @@ export default function Notes() {
       <div>
         <h3>Bulletin / PDF</h3>
       </div>
-<div>
-  <button  style={{height:'500px', width:'1210px', textAlign:'center', backgroundImage:'url(https://o3.llb.be/image/thumb/57749eab35705701fd926058.jpg)'}}  >   <CloudUploadIcon  /> 
-    <Form.File style={{}} id="exampleFormControlFile2" label="TELECHARGER"  />
- 
-  
+      <div>
+  <button  style={{height:'500px',borderRadius:20 ,width:'1210px', textAlign:'center'    ,backgroundImage:'url(https://media.gettyimages.com/vectors/cute-education-icon-report-card-vector-id1010040132?s=612x612)'}}  >   <CloudUploadIcon  /> 
+    {/* <Form.File style={{}} id="exampleFormControlFile2" label="TELECHARGER"  /> */}
+<h2 style={{color:'white',borderRadius:20,}}>Telecharger</h2>
    </button>
 </div>
 

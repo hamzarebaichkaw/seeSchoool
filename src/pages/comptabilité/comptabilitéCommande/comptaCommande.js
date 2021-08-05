@@ -11,7 +11,7 @@ import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import axios from "axios";
  
 import { CircularProgress } from "../../../components/Wrappers/Wrappers";
- 
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {
   Grid,
   Box,
@@ -94,7 +94,7 @@ export default function ComptaCommande() {
    <h1>Bon de commande </h1>
  <div style={{backgroundColor:'',}}>
          <br />
-         <div >
+         <div style={{display:'flex', justifyContent:'space-between'}}>
       
    <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
@@ -103,6 +103,9 @@ export default function ComptaCommande() {
    > 
    Details
    </Button>
+   <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addordre" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px'}}>
+      Ajouter un Ordre  <AddCircleIcon />
+      </Button>
          </div>
          <br />
          <br />

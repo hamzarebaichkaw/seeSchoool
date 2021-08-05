@@ -31,31 +31,28 @@ export default function Emploi() {
    
   return (
   <div>
-    <h1>Emploie</h1>
+    <h1>Emploi</h1>
     <div>
-      {/* <p style={{textAlign:'center', fontSize: '150%'}}>Emploie du teamps
+      <p style={{textAlign:'center', fontSize: '150%'}}>Emploie du temps
       <br />
         Semaine n°2 (20mars-27mars 2021)
-      </p> */}
+      </p>
       <div> 
-    {     
-
-                emploie.map((m)=>(  
+ 
 
                   <div> 
-                     <button   onClick={()=> window.open(m.photo , "_blank")} style={{ display:"flex",  color:'black',backgroundColor:'yellow', borderRadius:10,marginLeft:'75%',marginBottom:'-2.5%' }} >Telecharger</button>
-                  <p style={{textAlign:'center', fontSize: '150%'}}> {m.emploie_name}   {m.date_create}  
+                     <button   onClick={()=> window.open(  "_blank")} style={{ display:"flex",  color:'white',backgroundColor:'blue', borderRadius:10,marginLeft:'80%',marginTop:'-35px' }} >Telecharger</button>
+                  <p style={{textAlign:'center', fontSize: '150%'}}>   
                 
                 
                   </p>
 
-
-
-                  {/* <ReactPDF
+{/* 
+ <ReactPDF
   file={{
     url:   m.photo 
   }}
-/> */}
+/>  */}
 {/*     
     <ReactPDF
   file={{
@@ -71,14 +68,10 @@ export default function Emploi() {
 
 
 
-                )
-                  
-                )
+              
 
 
 
-
-   }
 
 
 

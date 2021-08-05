@@ -32,13 +32,25 @@ export default function Support() {
   <TextareaAutosize style={{width:'1220px'}} aria-label="minimum height" rowsMin={7} placeholder="Saisie Votre Texte ..." /> 
   <br />
   <br />
-  <Button
+  <div   style={{display:'flex', justifyContent:'space-between' }}>
+  <Button     
+                  
+                  variant="contained"
+                  className={classes.button}
+                style={{backgroundColor:'#343a40', color:'white'}}
+                >
+             <h5   style={{ color:'white'}}> Information</h5>  
+                </Button>
+             
+                <Button     
                   color="primary"
                   variant="contained"
                   className={classes.button}
+                
                 >
-                  envoyer
+                   Envoyer
                 </Button>
+                </div>
 </div>
 
   );

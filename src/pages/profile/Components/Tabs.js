@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -13,6 +13,40 @@ import FolderYellow from '../Icons/FolderYellow';
 import FolderYellowDark from '../Icons/FolderYellowDark';
 import SwipeableViews from 'react-swipeable-views';
 import Box from '@material-ui/core/Box';
+import axios from "axios";
+import FolderIcon from '@material-ui/icons/Folder';
+import { CircularProgress } from "../../../components/Wrappers/Wrappers";
+import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {
+  Grid,
+  
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  
+} from "@material-ui/core";
+import MUIDataTable from "mui-datatables";
+
+
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "OPEN_GRID":
+      return {
+        ...state,
+        toggleGrid: true
+      };
+    case "CLOSE_GRID":
+      return {
+        ...state,
+        toggleGrid: false
+      };
+    }
+  };
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -116,7 +150,7 @@ const styles = (theme) => ({
   },
   folderWrapper: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   }
 })
 
@@ -143,30 +177,138 @@ function CustomizedTabs({ classes }) {
 
   const theme = useTheme();
 
+
+
+
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [CoursM, seCoursM] = useState([]);
+
+
+
+  useEffect(function () {
+    const d= sessionStorage.getItem('user_id')
+    axios
+      // .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Matiere/${d}`)
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Matiere/1`)
+      .then(res => {
+        seCoursM(res.data.result)
+        // console.log(res.data.result)
+      }, 2000)
+  
+      .catch(() => {
+        console.log("ERROR")
+      });
+  }, []);
+  const [mat, setmat] =useState([]);
+ async function  reg  ( id ) {
+    console.log( id)
+   const d= sessionStorage.getItem('user_id')
+   dispatch({ type: "OPEN_GRID" })
+   setIsLoading(true)
+ await   axios
+      // .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ProfileCoursByStudent/${d}/${id}`)
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ProfileCoursByStudent/1/${id}`)
+      .then(res => {
+
+     setmat(res.data)
+      // console.log( res.data)
+      }, 2000)
+  
+      setIsLoading(false)
+  } 
+
+  const [state, dispatch] = React.useReducer(reducer, {
+    toggleModal: false,
+    toggleBody: false,
+    toggleSmall: false,
+    toggleGrid: false,
+    toggleLarge: false,
+    toggleInputModal: false
+  });
+
+
+
   return (
     <div class={classes.root}>
       <AntTabs
         value={index}
         onChange={handleChange}
       >
-        <AntTab value={0} label="Work" />
-        <AntTab value={1} label="Private" />
-        <AntTab value={2} label="Social" />
+        <AntTab value={0} label="Matiere" />
+        <AntTab value={1} label="Exercice" />
+        {/* <AntTab value={2} label="Social" /> */}
       </AntTabs>
       <SwipeableViews
         index={index}
         style={{ padding: '24px 0 0 '}}
         onChangeIndex={handleChangeIndex}
       >
+
+
+
+{/*     
+           {
+
+CoursM.map(
+
+  (m)=>( 
+
+    
+       <span >
+
+       <TabPanel  >
+           <div style={{display:'flex', justifyContent:'space-between'}}>
+              {/* <FolderBlueDark title="UI/UX" label="Matiére" value={m.matieress }     onClick={()=>{reg(m.id)}}  />  */}
+               {/* <FolderBlue  title="UI/UX" label="Matiere" value=   {m.matieress }  onClick={()=>{reg(m.id)}} />
+               </div>
+           </TabPanel>
+           
+       </span>
+     
+        
+        //  onClick={()=>{reg(m.id)}}  
+    
+          
+      
+         
+ 
+
+       )
+
+       ) } */} 
+ 
         <TabPanel>
+      
           <span className={classes.folderWrapper}>
-          <div>
-            {theme.palette.type === "dark" 
-              ? <FolderBlueDark title="UI/UX" label="files" value={178} /> 
-              : <FolderBlue title="UI/UX" label="files" value={178} />
-            }
-          </div>
-          <div>
+         
+            
+{    
+           
+
+CoursM.map(
+
+  (m)=>( 
+
+      
+    theme.palette.type === "dark" ,
+    <IconButton        onClick={
+      () => reg(["0"]) }
+  >
+   
+    <FolderBlue title="Matiere"label="" value=   {m.matieress }  onClick={()=>{reg(m.id)}} />
+    
+    </IconButton>  
+      
+         
+ 
+
+       )
+
+       ) }  
+           
+          
+          {/* <div>
             {theme.palette.type === "dark" 
               ? <FolderRedDark title="Design" label="files" value={154} /> 
               : <FolderRed title="Design" label="files" value={154} />
@@ -183,7 +325,55 @@ function CustomizedTabs({ classes }) {
               ? <FolderYellowDark title="Illustration" label="files" value={154} /> 
               : <FolderYellow title="Illustration" label="files" value={154} />
             }
-          </div>
+          </div> */
+          
+          
+          <Dialog
+          fullWidth={true}
+          maxWidth={"lg"}
+          open={state.toggleGrid}
+          onClose={() => dispatch({ type: "CLOSE_GRID" })}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Absence"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText
+              id="alert-dialog-description"
+              component={"div"}
+            >
+  <MUIDataTable
+              title="Gestion des cours"
+              data={ mat }
+              columns={[    "Matiére",
+              "Type","Fichier","Date",
+            ]}
+              options={{
+                filterType: "checkbox",
+                
+                textLabels: {
+                  body: {
+                      noMatch:  isLoading ?
+                      <CircularProgress />:
+                          'Sorry, there is no matching data to display',
+                  },
+              },
+              }}
+            />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => dispatch({ type: "CLOSE_GRID" })}
+              color="primary"
+            >
+             Fermer
+            </Button>
+       
+          </DialogActions>
+        </Dialog>
+          
+          }
           </span>
         </TabPanel>
         <TabPanel>
@@ -214,7 +404,7 @@ function CustomizedTabs({ classes }) {
           </div>
           </span>
         </TabPanel>
-        <TabPanel>
+        {/* <TabPanel>
           <span className={classes.folderWrapper}>
           <div>
             {theme.palette.type === "dark" 
@@ -241,7 +431,7 @@ function CustomizedTabs({ classes }) {
             }
           </div>
           </span>
-        </TabPanel>
+        </TabPanel> */}
       </SwipeableViews>
     </div>
   );
