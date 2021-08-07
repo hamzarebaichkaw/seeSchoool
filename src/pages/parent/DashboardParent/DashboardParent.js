@@ -29,11 +29,11 @@ import RNSWidget from '../../profile/Components/RNSWIdget';
   
     const [user, setUser] = useState({})
  
-    const [photos,setphotos] = useState({})
+    const [photo,setphotos] = useState({})
    const getUserById = () => {   
     const d= sessionStorage.getItem('user_id')
       // axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Student/${d}`)     
-      axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Student/1`)    
+      axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Parents/10`)    
        .then((res) => setUser(res.data[0])) 
        
        .catch((err) => console.log(err));  };
@@ -75,7 +75,7 @@ import RNSWidget from '../../profile/Components/RNSWIdget';
   const getphotos = () => {   
     const d= sessionStorage.getItem('user_id')
     // axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ImageByStudent/${d}`)    
-    axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ImageByStudent/1`)   
+    axios      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ImageByparents/10`)   
      .then((res) => setphotos(res.data["0"] )) 
      
      .catch((err) => console.log(err));
@@ -97,7 +97,7 @@ import RNSWidget from '../../profile/Components/RNSWIdget';
             <Grid item xs={12} sm={5} md={5} lg={5}>
               <div className={classes.visualProfile}>
                 <div className={classes.profileImage}>
-                  <img width="100%" src={photos.photo} alt="profile" />
+                  <img width="100%" src={photo.photo} alt="profile" />
                 </div>
                 <Chip
                   className={classes.chipMargin}
@@ -110,14 +110,19 @@ import RNSWidget from '../../profile/Components/RNSWIdget';
               <div className={classes.profileDescription}>
                 <Typography variant="h3" className={classes.profileTitle}>
                
-                  {user.username}   
-
-             
-
+                  {user.fullName}  
+                  < br /> 
+                  {user. username} 
+                  < br /> 
+                  {user. email} 
+                  < br /> 
+                  {user. Nationalite} 
+                  < br /> 
+                  {user. phone} 
 
 
                 </Typography>
-                <span className={classes.profileSubtitle}>Hamza's Father</span>
+                <span className={classes.profileSubtitle}>Student's Mother</span>
                 <a className={classes.profileExternalRes}> {user.Classe} </a>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {/* <Badge type="tag" badgeContent={"UI/UX"} color="primary"/> */}

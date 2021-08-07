@@ -585,13 +585,8 @@ const AddFournisseur = () => {
 
 
 
-    var [fullName, setfullName] = useState("");
-    var [username, setusername] = useState("");
-    var [email, setemail] = useState("");
-    var [password, setpassword] = useState("");
-    var [Genre, setGenre] = useState("");
-    var [date_naissance, setdate_naissance] = useState("");
-    var [Nationalite, setNationalite] = useState("");
+
+ 
     var [idStudent, setidStudent] = useState("");
     const [CoursM, seCoursM] = useState([]);
     useEffect(function () {
@@ -609,8 +604,16 @@ const AddFournisseur = () => {
 
 
 
+    var [Nom_fornisseur, setNom_fornisseur] = useState("");
+    var [phone, setphone] = useState("");
+    var [email, setemail] = useState("");
+    var [Adress, setAdress] = useState("");
+    var [idStudent, setidStudent] = useState("");
 
-    function Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite
+
+
+
+    function Addfournisseur(Nom_fornisseur,phone,email,Adress,
        
        
       ){
@@ -619,29 +622,30 @@ const AddFournisseur = () => {
       
   
         Axios
-            .post('http://www.pointofsaleseedigitalaency.xyz/public/api/users', 
+            .post('http://www.pointofsaleseedigitalaency.xyz/public/api/fournisseurs', 
             
             {
-                "fullName": fullName,
+
+
+              
+                "Nom_fornisseur": Nom_fornisseur,
       
-                "username": username,
+                "phone": phone,
                 "email": email,              
-                "password":password,
-                "Genre":Genre,
-                "date_naissance":date_naissance,
-                "Nationalite":Nationalite
+                "Adress":Adress,
+              
             })
             .then( 
 
-              res => {
-                  console.log(res.data)
+                res => {
+                    console.log(res.data)
+                    
                   
-                
-                  setidStudent(res.data.id)
-                
-                }
-
-            )
+                    setidStudent(res.data.id)
+                  
+                  }
+  
+              )
              
        
 
@@ -760,9 +764,9 @@ const AddFournisseur = () => {
                                 {getStepContent(activeStep)}
                             </Typography>
                             <h1>Ajouter un Fournisseur</h1>
-                            {activeStep === 0 ? (
+                           
                                 <>
-                                   <InputLabel id="demo-simple-select-label">Type de Produit</InputLabel>
+                                   {/* <InputLabel id="demo-simple-select-label">Type de Produit</InputLabel>
                                     <FormControl
             variant="outlined"
             // onChange={}
@@ -805,29 +809,29 @@ const AddFournisseur = () => {
 >Autre</MenuItem>
             </Select>
          
-        </FormControl>
+        </FormControl> */}
                                    <TextField
             id="outlined-basic"
-            label="Nom"
+            label="Nom de fornisseur"
             // onChange={}
-            name="fullName"
-            value={fullName}
-            onChange={e => setfullName(e.target.value)}
+            name="Nom_fornisseur"
+            value={Nom_fornisseur}
+            onChange={e => setNom_fornisseur(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText="S'il vous ajouter votre full name"
+            helperText="S'il vous ajouter le nom du fournisseur"
         />
                                  <TextField
             id="outlined-basic"
-            label="Prenom"
+            label="phone"
             // onChange={}
             // value={}
-            name="username"
-            value={username}
-            onChange={e => setusername(e.target.value)}
+            name="phone"
+            value={phone}
+            onChange={e => setphone(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer le nom "
+            helperText= "S'il vous plait ajouter le numéro du fournisseur "
             type={'textera'}
         />
                                     <TextField
@@ -840,7 +844,7 @@ const AddFournisseur = () => {
             onChange={e => setemail(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
-            helperText= "S'il vous plait entrer votre email "
+            helperText= "S'il vous plait entrer l'email du fournisseur "
             type={'textera'}
         />
                                     {/* <FormControl
@@ -895,18 +899,18 @@ const AddFournisseur = () => {
                                     /> */}
                                      <TextField
             id="outlined-basic"
-            label="Genre"
+            label="Adress"
             // onChange={}
             // value={}
-            name="Genre"
-            value={Genre}
-            onChange={e => setGenre(e.target.value)}
+            name="Adress"
+            value={Adress}
+            onChange={e => setAdress(e.target.value)}
             variant="outlined"
             style={{ marginBottom: 35 }}
             helperText= "S'il vous plait entrer votre genre "
             type={'textera'}
         />
-         <TextField
+         {/* <TextField
     id="date"
     label="date "
     type="date"
@@ -930,14 +934,14 @@ const AddFournisseur = () => {
             style={{ marginBottom: 35 }}
             helperText= "S'il vous plait entrer Votre nationatlité "
             type={'textera'}
-        />
+        /> */}
                                 </>
-                            ) : activeStep === 1 ? (
-                                <>
-                                    <Typography weight={'medium'}>
+                            
+                               {/* <> */}
+                                    {/* <Typography weight={'medium'}>
                                         Photo:
-                                    </Typography>
-                                    <div class={classes.galleryWrap}>
+                                    </Typography> */}
+                                    {/* <div class={classes.galleryWrap}>
                                     {newUser && newUser.avatars && newUser.avatars.length !== 0 ? (
                                       newUser.avatars.map((avatar, idx) => (
                                         <div className={classes.imgWrap}>
@@ -950,23 +954,23 @@ const AddFournisseur = () => {
                                         </div>
                                       ))
                                     ): null}
-                                    </div>
-                                    <label
+                                    </div> */}
+                                    {/* <label
                                       className={classes.uploadLabel}
                                       style={{ cursor: 'pointer' }}
                                     >
                                       {'Upload an image'}
                                         <input style={{ display: 'none' }} accept="image/*" type="file" ref={fileInput}   value={imagestudent}
             onChange={e => setimagestudent(e.target.value)} />
-                                    </label>
-                                    <Typography
+                                    </label> */}
+                                    {/* <Typography
                                         size={'sm'}
                                         style={{ marginBottom: 35 }}
                                     >
                                        
-                                    </Typography>
+                                    </Typography> */}
                                    
-                                    <TextField
+                                    {/* <TextField
                                         id="outlined-basic"
                                         label="Contact number"
                                         onChange={handleChange}
@@ -977,7 +981,7 @@ const AddFournisseur = () => {
                                         helperText={
                                             'Enter your contact number '
                                         }
-                                    />
+                                    /> */}
                                     {/* <TextField
                                         id="outlined-basic"
                                         label="Email"
@@ -987,7 +991,7 @@ const AddFournisseur = () => {
                                         helperText={'Enter your email'}
                                         type={'email'}
                                     /> */}
-                                    <FormControl
+                                    {/* <FormControl
                                         variant="outlined"
                                         style={{ marginBottom: 35 }}
                                     >
@@ -1042,8 +1046,8 @@ const AddFournisseur = () => {
                                         >
                                             Choose your state
                                         </FormHelperText>
-                                    </FormControl>
-                                    <FormControl
+                                    </FormControl> */}
+                                    {/* <FormControl
                                         variant="outlined"
                                         style={{ marginBottom: 35 }}
                                     >
@@ -1069,30 +1073,31 @@ const AddFournisseur = () => {
                                         >
                                             Choose your city
                                         </FormHelperText>
-                                    </FormControl>
-                                    <TextField
+                                    </FormControl> */}
+                                    {/* <TextField
                                         id="outlined-basic"
                                         label="Address"
                                         variant="outlined"
                                         onChange={handleChange}
                                         style={{ marginBottom: 35 }}
                                         helperText={'Enter your adress'}
-                                    />
-                                </>
-                            ) : activeStep === 2 ? (
-                                <>
+                                    /> */}
+                              {/* //  </>
+                            // ) : activeStep === 2 ? (
+                            //     <>
                          
                                  
                                  
-                                </>
-                            ) : (
-                                <>
+                            //     </>
+                            // ) : (
+                            //     <>
                                 
-                                </>
-                            )}
+                            //     </>
+                            )
+                        } */}
                             <div>
                                 <div>
-                                    {activeStep === 0 ? (
+                                   
                                         <Box
                                             display={'flex'}
                                             justifyContent={'flex-end'}
@@ -1102,29 +1107,29 @@ const AddFournisseur = () => {
                                                 color="primary"
                                                 style={{backgroundColor:'#ba181b'}}
                                                 onClick={() => {
-                                                    handleNext();
-                                                    {Addclass(fullName,username,email,password,Genre,date_naissance,Nationalite)}
+                                                   
+                                                    {Addfournisseur(Nom_fornisseur,phone,email,Adress,)}
                                                 }}
                                             >
-                                                Next
+                                                Finish
                                             </Button>
                                           
         
                                         </Box>
-                                    ) : (
+                                  
                                         <Box
                                             display={'flex'}
                                             justifyContent={'space-between'}
                                         >
-                                            <Button
+                                            {/* <Button
                                              style={{backgroundColor:'#ba181b'}}
                                                 onClick={handleBack}
                                                 variant={'contained'}
                                                 color={'primary'}
                                             >
                                                 Back
-                                            </Button>
-                                            <Button
+                                            </Button> */}
+                                            {/* <Button
                                              style={{backgroundColor:'#ba181b'}}
                                                 variant="contained"
                                                 color="primary"
@@ -1137,9 +1142,9 @@ const AddFournisseur = () => {
                                                 {activeStep === steps.length - 1
                                                     ? 'Finish'
                                                     : 'Next'}
-                                            </Button>
+                                            </Button> */}
                                         </Box>
-                                    )}
+                                   
                                 </div>
                             </div>
                         </Box>

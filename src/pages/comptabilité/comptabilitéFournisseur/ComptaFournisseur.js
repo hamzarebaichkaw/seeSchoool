@@ -6,6 +6,7 @@ import { Grid,  Box } from "@material-ui/core";
     import { CircularProgress } from "../../../components/Wrappers"
     import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ReactApexChart from './DonutCharts'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 export default function ComptaFournisseur() {
   const [mat, setmat] =useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -65,15 +66,15 @@ const Table = () =>
 <div>
   <div style={{display:'flex', justifyContent:'space-between'}}>
     <h1>Gestion des Fournisseurs</h1>
-    <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addfournisseur" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px'}}>
-      Ajouter un Fournisseur  <AddCircleIcon />
+    <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addfournisseur" style={{backgroundColor: "#ba181b", borderRadius:10 , letterSpacing:4,height:'60px'}}>
+        <AddShoppingCartIcon style={{width:'80px', height:'50px'}} />      Fournisseur 
       </Button>
    
       </div>
       <br />    <br />
       <div style={{display:'flex', justifyContent:'flex-end'}}>
-      <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addproduit" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px',width:'310px'}}>
-      Ajouter un Produit  <AddCircleIcon />
+      <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addproduit" style={{backgroundColor: "#ba181b", borderRadius:10 , letterSpacing:4,height:'60px',width:'250px'}}>
+       <AddShoppingCartIcon  style={{width:'80px', height:'50px'}}  />    Produit
       </Button>
       </div>
     <br />    <br />    <br />

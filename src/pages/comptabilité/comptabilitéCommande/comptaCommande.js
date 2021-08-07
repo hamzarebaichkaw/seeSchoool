@@ -5,7 +5,7 @@ import useStyles from "./styles";
 import { withStyles, useTheme } from '@material-ui/core/styles';
  
 import MoreVertIcon from '@material-ui/icons/MoreVert';
- 
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
  
 import { Link,Button, Avatar } from "../../../components/Wrappers/Wrappers";
 import axios from "axios";
@@ -49,15 +49,15 @@ export default function ComptaCommande() {
   const classes = useStyles();
   const [CoursM, seCoursM] = useState([]);
   useEffect(function () {
-    getStats()
+    reg()
   }, [])
-  const getStats = async () => {
+  const reg = async () => {
     const d= sessionStorage.getItem('user_id')
     setIsLoading(true)
     await axios
       .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
       .then(res => {
-        seCoursM(res.data.result)
+        setmat(res.data)
        
       }, 2000)
     
@@ -67,16 +67,16 @@ export default function ComptaCommande() {
       setIsLoading(false)
   } ;
   const [mat, setmat] =useState([]);
-  async function  reg  ( id ) {
-   const d= sessionStorage.getItem('user_id')
-   setIsLoading(true)
-   await axios
-      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
-      .then(res => {
-     setmat(res.data)
-      }, 2000)
-      setIsLoading(false)
-  } 
+  // async function  reg  ( id ) {
+  //  const d= sessionStorage.getItem('user_id')
+  //  setIsLoading(true)
+  //  await axios
+  //     .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/CommandCompt`)
+  //     .then(res => {
+  //    setmat(res.data)
+  //     }, 2000)
+  //     setIsLoading(false)
+  // } 
   const [mats, setmats] =useState([]);
   async function  regs  ( id ) {
    const d= sessionStorage.getItem('user_id')
@@ -91,22 +91,27 @@ export default function ComptaCommande() {
   } 
   return (
 <div>
+  <div style= {{display:'flex', 'justifyContent':'space-between'}}>
    <h1>Bon de commande </h1>
+   <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addordre" style={{backgroundColor: "#ba181b", borderRadius:10 , letterSpacing:4,height:'60px'}}>
+     <AddShoppingCartIcon style={{width:'50px', height:'50px'}} />   Ordre 
+      </Button>
+      </div>
  <div style={{backgroundColor:'',}}>
          <br />
-         <div style={{display:'flex', justifyContent:'space-between'}}>
+         {/* <div style={{display:'flex', justifyContent:'space-between'}}>
       
-   <Button style={{backgroundColor: "#ba181b",width:'150px'}}
+   {/* <Button style={{backgroundColor: "#ba181b",width:'150px'}}
      color="primary"
      variant="contained"
      onClick={()=>{reg("3")}} 
    > 
    Details
-   </Button>
+   </Button> 
    <Button  variant="contained" color="primary" href="http://localhost:3000/#/comptabilite/addordre" style={{backgroundColor: "#ba181b", borderRadius:50 , letterSpacing:4,height:'60px'}}>
       Ajouter un Ordre  <AddCircleIcon />
       </Button>
-         </div>
+         </div> */}
          <br />
          <br />
          <br />

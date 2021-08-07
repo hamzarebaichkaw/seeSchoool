@@ -7,7 +7,7 @@ export default function ComptaDashboard() {
     return(
        <div>
            <center>
-            <h1 style={{border:'solid',backgroundColor:'black', color:'white',borderRadius:'50px',width:'550px'}}>Dashboard comptabilite</h1>
+            {/* <h1 style={{border:'solid',backgroundColor:'black', color:'white',borderRadius:'50px',width:'550px'}}>Dashboard comptabilite</h1> */}
             </center>
             <br />
             <br />

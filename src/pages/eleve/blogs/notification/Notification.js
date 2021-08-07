@@ -9,7 +9,7 @@ import Table from "../../dashboard/components/Table/Table";
 import axios from "axios";
 // data
 import mock from "../../dashboard/mock";
-
+import NewsWidget from '../../../draggablegrid/Components/NewsWidget';
 
 export default function Notification() {
   const classes = useStyles();
@@ -33,7 +33,7 @@ export default function Notification() {
 <div>
     <h2>Notifications</h2>
     <div>
-    { 
+    {/* { 
     CoursM.map(
 
       (m)=>( 
@@ -49,7 +49,15 @@ export default function Notification() {
     </div>
   
       ))
-}
+} */}
+   <Grid item xs={12} sm={12} md={12} lg={12}>
+    <Widget 
+              className={classes.widgetLayout}
+              title="News"
+            >
+              <NewsWidget />
+            </Widget>
+          </Grid>
   </div>
   </div>
   );
