@@ -164,19 +164,19 @@ const iconn = <StarsIcon />
       {CoursM.map((m,) => (
         <li className={classes.listRow} key={m.title}>
           <div className={classes.iconBlock}>
-            <span className={`${classes.icon}`} style={{ backgroundColor: m.background }}>
-              <i className={`fa fa-${ 'bell'}`}></i>
+          <span className={`${classes.icon}`} style={{ backgroundColor: '#ff8080',marginRight:'15px', marginTop:'10px' }}>
+              <i className={`fa fa-${ 'bell-o'}`}></i>
               
             </span>
           </div>
           <div className={classes.newsmInfo}>
-            <Typography variant="h3"><a className={classes.newsHeader} href="#/app/grid">{"m.title"}</a></Typography>
+            <Typography variant="h5"><a className={classes.newsHeader} href="#/app/grid">{"m.title"}</a></Typography>
             <div>
               {m.Message}
             </div>
             <time className={classes.timeBlock}>{m.date_s}</time>
           </div>
-          <div style={{color:'white', backgroundColor:'#ff8080', borderRadius:15, display:'flex', alignItems:'center',height:'50px', marginTop:'20px' }}>    {m.Status}</div>
+          {/* <div style={{color:'white', backgroundColor:'#ff8080', borderRadius:15, display:'flex', alignItems:'center',height:'50px', marginTop:'20px' }}>    {m.Status}</div> */}
       
         </li>
       ))}

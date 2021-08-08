@@ -1,116 +1,207 @@
-import React, { useState } from 'react';
-import { Button } from '../../../components/Wrappers';
-import { Grid, Typography } from "@material-ui/core";
-import Dot from '../../../components/Dot/Dot';
-import { withStyles } from '@material-ui/core/styles';
-import {
-    ResponsiveContainer,
-    PieChart,
-    Pie,
-    Cell,
-  } from "recharts";
-import chartsData from './mock';
+import React, { useState, useEffect } from "react";
+import { Grid, Box } from "@material-ui/core";
+import { useTheme } from "@material-ui/styles";
+import ReactApexChart from "react-apexcharts";
+import axios from "axios";
+// components
+import Widget from "../../../components/Widget/Widget";
+import { CircularProgress } from "../../../components/Wrappers"
+import { Button } from "../../../components/Wrappers";
 
-const PieChartData = [
-  { name: "New", value: 400 ,color: "#536DFE" },
-  { name: "In Progress", value: 300 ,color: "#FFC35F" },
-  { name: "Completed", value: 300 ,color: "#3CD4A0" },
-  { name: "Cancel", value: 200 ,color: "#FF5C93" }
-];
 
-const styles = (theme) => ({
-  legendItemContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 8,
-    paddingLeft: 10
-  },
-  detailsWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    paddingRight: 0,
-    paddingLeft: 0,
-    width: '100%',
-    bottom: 5,
-  },
-  legendItemsContainer: {
-    display: 'flex', 
-    alignItems: 'center', 
-    flexWrap: 'wrap'
-  }
-})
+ 
 
-const DonutChart = ({ classes }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [donutData, setDonutData] = useState(chartsData);
-  // eslint-disable-next-line no-unused-vars
-  const [age, setAge] = React.useState('');
+export default function Charts(props) {
+
+  const [CoursM, seCoursM] = useState([]);
+ 
+  useEffect(function () {
+    const d= sessionStorage.getItem('user_id')
+    axios
+      // .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/Matiere/${d}`)
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartAbsenceMatiere/1`)
+      .then(res => {
+        seCoursM(res.data.series)
+        // console.log(res.data.result)
+      }, 2000)
+  
+      .catch(() => {
+        console.log("ERROR")
+      });
+  }, []);
+
+
+  const themeOptions = theme => {
+
+    return {
+      labels: CoursM,
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ],
+      colors: [
+        theme.palette.primary.main,
+        theme.palette.secondary.main,
+        theme.palette.warning.main,
+        theme.palette.success.light,
+        theme.palette.info.main
+      ],
+      options: {
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: "bottom"
+              }
+            }
+          }
+        ],
+        colors: [
+          theme.palette.primary.main,
+          theme.palette.secondary.main,
+          theme.palette.warning.main,
+          theme.palette.success.light,
+          theme.palette.info.main
+        ]
+      },
+      options2: {
+        dataLabels: {
+          enabled: false
+        },
+
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                show: false
+              }
+            }
+          }
+        ],
+        legend: {
+          position: "right",
+          offsetY: 0,
+          height: 230
+        },
+        colors: [
+          theme.palette.primary.main,
+          theme.palette.secondary.main,
+          theme.palette.warning.main,
+          theme.palette.success.light,
+          theme.palette.info.main
+        ]
+      },
+      options3: {
+        labels: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        theme: {
+          monochrome: {
+            enabled: true
+          }
+        },
+        colors: [
+          theme.palette.primary.main,
+          theme.palette.secondary.main,
+          theme.palette.warning.main,
+          theme.palette.success.light,
+          theme.palette.info.main
+        ],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: "bottom"
+              }
+            }
+          }
+        ]
+      }
+    };
+  };
+
+  const theme = useTheme();
+
+  useEffect(function () {
+    getStats()
+  }, []);
+
+  const [state, setState] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const reset = () => {
+    getStats()
+  };
+
+  const getStats = async () => {
+    const d = sessionStorage.getItem('user_id')
+    setIsLoading(true)
+    await axios
+      .get(`http://www.pointofsaleseedigitalaency.xyz/public/APIUser/ChartAbsence/1`)
+      .then(res => {
+        setState(res.data);
+        console.log(res.data)
+      }, 2000)
+      .catch((e) => {
+        console.error(e)
+      });
+      setIsLoading(false)
+  };
+
+  // local
 
   return (
-    <Grid container spacing={0}>
-      <Grid
-        item
-        lg={12}
-        md={12} xs={12}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: 'relative',
-          padding: 0,
-        }}
-      >
-        <Typography
-          variant={"caption"}
-          style={{ position: "absolute", top: 60, fontWeight: "bold", fontSize: 18 }}
-        >
-          121
-        </Typography>
-        <ResponsiveContainer width="100%" height={150}>
-          <PieChart>
-            <Pie
-              data={PieChartData}
-              innerRadius={33}
-              outerRadius={50}
-              dataKey="value"
-            >
-              {PieChartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.color}
+
+    <>
+      
+          <Widget title={"Absence Total "} >
+            {
+              isLoading ?
+                <Box my={3} display="flex" flexWrap="wrap" justifyContent="center">
+                  <Box mt={1} mr={2}>
+                    <CircularProgress />
+                  </Box>
+                </Box>
+                :
+                <ReactApexChart
+                  options={themeOptions(theme)}
+                  series={state.series}
+                  type="donut"
+                  height="380"
                   stroke={""}
                 />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-      </Grid>
-      <Grid item lg={12} md={12} xs={12} className={classes.legendItemsContainer}>
-          {PieChartData.map(({ name, value, color }, index) => (
-            <div key={color} className={classes.legendItemContainer}>
-              <Dot color={color} style={{ marginLeft: 5 }} />
-              <Typography
-                color="text"
-                colorBrightness={"hint"}
-                variant={"caption"}
-                style={{ fontSize: 14 }}
-                noWrap
-              >
-                &nbsp;{name}&nbsp;
-              </Typography>
-            </div>
-          ))}
-      </Grid>
-      <div className={classes.detailsWrapper} >
-        <Button 
-          variant="outlined" 
-          color="primary" 
-        >
-          DETAILS
-        </Button>
-      </div>
-    </Grid>
-  )
+            }
+          </Widget>
+        
+     
+    </>
+  );
 }
-
-export default withStyles(styles)(DonutChart)

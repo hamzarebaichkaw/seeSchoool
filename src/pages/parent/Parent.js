@@ -36,6 +36,7 @@ import Support from './supportParent/Support'
 import payement from './payementParent/PayementParent'
 import Payement from './payementParent/PayementParent'
 import DashboardParent from './DashboardParent/DashboardParent'
+import ChooseCHild from './parentChild/ParentChild'
  
 
 function Layout(props) {
@@ -87,7 +88,7 @@ function Layout(props) {
                     <Route path="/parent/absence" component={Absences} />
                     <Route path="/parent/HomeWork" component={Homework} />
                     <Route path="/parent/Support" component={Support} />
-                  
+                    <Route path="/parent/child" component={ChooseCHild} />
                     <Route path="/parent/payement" component={Payement} />
                 </Switch>
              

@@ -222,12 +222,9 @@ useEffect(() => {    getphotos();  }, []);
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={12}>
-            <Widget widgetWithDropdown
-              className={classes.adjustHeight}
-              title="Projects"
-            >
+         
               <Donut />
-            </Widget>
+         
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={12}>
             {/* <Widget>
